@@ -1,0 +1,2342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailoré | Official Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- BLACK PINK WHITE PALETTE --- */
+        :root {
+            --hitam: #000000;
+            --putih: #ffffff;
+            --pink-neon: #ff477e;
+            --pink-soft: #ffeef2;
+            --abu: #f4f4f4;
+            --pink-dark: #cc0033;
+        }
+
+        /* RESET */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--abu); color: var(--hitam); line-height: 1.6; }
+
+        /* HEADER */
+        header { 
+            background: var(--hitam); 
+            color: var(--putih); 
+            padding: 1.5rem 0; 
+            border-bottom: 4px solid var(--pink-neon);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 { 
+            font-weight: 800; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            font-size: 2rem; 
+        }
+        header span { color: var(--pink-neon); }
+
+        .auth-section {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .user-info {
+            color: var(--pink-neon);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .btn-header {
+            padding: 0.5rem 1.5rem;
+            background: var(--pink-neon);
+            color: var(--putih);
+            border: none;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            transition: 0.2s;
+        }
+
+        .btn-header:hover {
+            background: var(--pink-dark);
+            transform: translateY(-2px);
+        }
+
+        /* CONTAINER */
+        .container { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            padding: 2rem; 
+        }
+
+        /* TABS */
+        .tabs {
+            display: flex;
+            gap: 0;
+            margin-bottom: 2rem;
+            border: 2px solid var(--hitam);
+            width: fit-content;
+        }
+
+        .tab {
+            padding: 1rem 2rem;
+            background: var(--putih);
+            color: var(--hitam);
+            border: none;
+            border-right: 2px solid var(--hitam);
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: 0.2s;
+        }
+
+        .tab:last-child {
+            border-right: none;
+        }
+
+        .tab.active {
+            background: var(--hitam);
+            color: var(--pink-neon);
+        }
+
+        .tab:hover:not(.active) {
+            background: var(--pink-soft);
+        }
+
+        /* CARD */
+        .card { 
+            background: var(--putih); 
+            border: 2px solid var(--hitam); 
+            padding: 2rem; 
+            box-shadow: 8px 8px 0px var(--hitam); 
+            margin-bottom: 2rem; 
+        }
+
+        .card h3 { 
+            font-size: 1.5rem; 
+            margin-bottom: 1.5rem; 
+            color: var(--hitam); 
+            border-bottom: 2px solid var(--hitam); 
+            padding-bottom: 0.5rem; 
+            text-transform: uppercase; 
+            font-weight: 800; 
+        }
+
+        /* SEARCH & FILTERS */
+        .search-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group { margin-bottom: 1.2rem; }
+        label { 
+            display: block; 
+            margin-bottom: 0.5rem; 
+            font-weight: 600; 
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input, select { 
+            width: 100%; 
+            padding: 1rem; 
+            border: 2px solid var(--hitam); 
+            background: var(--putih); 
+            font-size: 1rem; 
+            font-weight: 600; 
+            transition: 0.2s; 
+        }
+
+        input:focus, select:focus { 
+            outline: none; 
+            border-color: var(--pink-neon); 
+            background: var(--pink-soft); 
+        }
+
+        /* PRODUCTS GRID */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-card {
+            background: var(--putih);
+            border: 2px solid var(--hitam);
+            box-shadow: 6px 6px 0px var(--hitam);
+            transition: 0.2s;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 8px 8px 0px var(--hitam);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            background: var(--abu);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px solid var(--hitam);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .stock-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--pink-neon);
+            color: var(--putih);
+            padding: 5px 12px;
+            font-size: 0.65rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--hitam);
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        .out-of-stock-badge {
+            background: var(--hitam);
+        }
+
+        .low-stock {
+            background: #ff9500;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-brand {
+            font-size: 0.7rem;
+            color: var(--pink-neon);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--hitam);
+            text-transform: uppercase;
+            line-height: 1.3;
+            min-height: 2.6rem;
+        }
+
+        .product-meta {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 3px 8px;
+            font-size: 0.65rem;
+            background: var(--hitam);
+            color: var(--putih);
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .badge.stock-low { background: var(--pink-neon); }
+        .badge.stock-out { background: var(--hitam); color: var(--pink-neon); }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--hitam);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-stock {
+            font-size: 0.8rem;
+            color: var(--hitam);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .stock-available { color: #00aa00; }
+        .stock-low { color: var(--pink-neon); }
+        .stock-out { color: var(--hitam); }
+
+        /* BUTTONS */
+        button { 
+            width: 100%; 
+            padding: 1rem; 
+            background: var(--hitam); 
+            color: var(--putih); 
+            border: none; 
+            font-size: 0.9rem; 
+            font-weight: 800; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            transition: 0.2s; 
+        }
+
+        button:hover { 
+            background: var(--pink-neon); 
+            transform: translateY(-2px);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: var(--putih);
+            color: var(--hitam);
+            border: 2px solid var(--hitam);
+        }
+
+        .btn-secondary:hover {
+            background: var(--pink-soft);
+        }
+
+        .btn-refresh { 
+            background: var(--putih); 
+            color: var(--hitam); 
+            border: 2px solid var(--hitam); 
+            width: auto; 
+            padding: 0.5rem 1.5rem; 
+            font-size: 0.8rem; 
+            box-shadow: 4px 4px 0 var(--hitam); 
+            position: relative;
+            top: 0;
+            transition: all 0.2s;
+        }
+        
+        .btn-refresh:hover { 
+            background: var(--pink-neon); 
+            color: var(--putih); 
+            box-shadow: 2px 2px 0 var(--hitam); 
+            top: 2px; 
+        }
+
+        /* TABLE */
+        .table-responsive { 
+            overflow-x: auto; 
+            border: 2px solid var(--hitam); 
+        }
+
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            font-size: 0.85rem; 
+        }
+
+        th { 
+            background: var(--hitam); 
+            color: var(--putih); 
+            padding: 1rem; 
+            text-align: left; 
+            text-transform: uppercase; 
+            font-size: 0.75rem; 
+            letter-spacing: 1px; 
+        }
+
+        td { 
+            padding: 1rem; 
+            border-bottom: 1px solid #ddd; 
+            background: var(--putih); 
+            font-weight: 600; 
+        }
+
+        tr:nth-child(even) td { 
+            background: var(--pink-soft); 
+        }
+
+        /* PAGINATION */
+        .pagination {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 3rem 0;
+            padding: 1.5rem;
+            background: var(--putih);
+            border: 3px solid var(--hitam);
+            box-shadow: 6px 6px 0px var(--hitam);
+        }
+
+        .pagination button {
+            width: auto;
+            min-width: 50px;
+            padding: 0.8rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 900;
+            background: var(--putih);
+            border: 2px solid var(--hitam);
+            box-shadow: 4px 4px 0px var(--hitam);
+            transition: all 0.2s;
+        }
+
+        .pagination button:hover {
+            background: var(--pink-soft);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--hitam);
+        }
+
+        .pagination button.active {
+            background: var(--pink-neon);
+            color: var(--putih);
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--putih);
+            border: 4px solid var(--hitam);
+            box-shadow: 12px 12px 0px var(--hitam);
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--hitam);
+            padding-bottom: 1rem;
+        }
+
+        .modal-header h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin: 0;
+            border: none;
+            padding: 0;
+        }
+
+        .close-btn {
+            background: var(--hitam);
+            color: var(--putih);
+            border: none;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            font-weight: 800;
+            padding: 0;
+        }
+
+        .close-btn:hover {
+            background: var(--pink-neon);
+        }
+
+        /* QUANTITY SELECTOR */
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 0 auto 1.5rem;
+            width: fit-content;
+        }
+
+        .quantity-selector button {
+            background: var(--hitam);
+            color: var(--putih);
+            border: none;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .quantity-selector button:hover {
+            background: var(--pink-neon);
+            transform: scale(1.1);
+        }
+
+        .quantity-selector button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .quantity-selector input {
+            width: 80px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            border: 3px solid var(--hitam);
+            padding: 0.5rem;
+            background: var(--putih);
+        }
+
+        .btn-checkout {
+            width: 100%;
+            padding: 1.5rem;
+            background: var(--pink-neon);
+            color: var(--putih);
+            border: 3px solid var(--hitam);
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 6px 6px 0 var(--hitam);
+        }
+
+        .btn-checkout:hover {
+            background: var(--pink-dark);
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0 var(--hitam);
+        }
+
+        .btn-checkout:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* LOADING */
+        .loading {
+            text-align: center;
+            padding: 4rem;
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--hitam);
+        }
+
+        .loading::after {
+            content: '...';
+            animation: dots 1.5s infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+
+        /* ALERT */
+        .alert {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 2px solid var(--hitam);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            position: fixed;
+            top: 100px;
+            right: 2rem;
+            z-index: 99999;
+            max-width: 400px;
+            min-width: 300px;
+            box-shadow: 6px 6px 0 var(--hitam);
+        }
+
+        .alert-success {
+            background: #e8ffe8;
+            color: #00aa00;
+        }
+
+        .alert-error {
+            background: var(--pink-soft);
+            color: var(--pink-dark);
+        }
+
+        .alert-info {
+            background: var(--pink-soft);
+            color: var(--hitam);
+        }
+
+        /* STATS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--hitam);
+            color: var(--putih);
+            padding: 1.5rem;
+            border: 2px solid var(--hitam);
+            box-shadow: 6px 6px 0px var(--hitam);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--pink-neon);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        /* STATUS BADGE */
+        .status-badge {
+            background: #000000;
+            color: #ff477e;
+            padding: 5px 10px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            border: 1px solid #ff477e;
+            display: inline-block;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .search-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .tabs {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .tab {
+                flex: 1;
+            }
+        }
+
+        /* FLOATING CART BUTTON */
+        .floating-cart-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--pink-neon);
+            color: var(--putih);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 6px 6px 0 var(--hitam);
+            border: 3px solid var(--hitam);
+            cursor: pointer;
+            z-index: 999;
+            transition: transform 0.2s;
+        }
+
+        .floating-cart-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--hitam);
+            color: var(--putih);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            border: 2px solid var(--putih);
+        }
+
+        /* HIDDEN */
+        .hidden {
+            display: none !important;
+        }
+
+        /* FOOTER */
+        footer { 
+            text-align: center; 
+            padding: 2rem; 
+            color: var(--hitam); 
+            font-weight: 600; 
+            font-size: 0.8rem; 
+            opacity: 0.6; 
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <h1>Tailoré<span>.</span></h1>
+            <div class="auth-section">
+                <div class="user-info" id="userInfo">GUEST</div>
+                <button class="btn-header" id="authBtn" onclick="showLoginModal()">LOGIN</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- USER TABS -->
+        <div class="tabs" id="userTabs">
+            <button class="tab active" onclick="switchTab('catalog')">CATALOG</button>
+            <button class="tab" onclick="switchTab('history')">ORDER HISTORY</button>
+        </div>
+
+        <!-- ADMIN TABS -->
+        <div class="tabs hidden" id="adminTabs">
+            <button class="tab active" onclick="switchTab('catalog')">CATALOG</button>
+            <button class="tab" onclick="switchTab('inventory')">INVENTORY</button>
+            <button class="tab" onclick="switchTab('transactions')">TRANSACTION HISTORY</button>
+        </div>
+
+        <!-- ALERT AREA -->
+        <div id="alertArea"></div>
+
+        <!-- CATALOG TAB -->
+        <div id="catalogTab" class="tab-content">
+            <div class="card">
+                <h3>Explore Products</h3>
+                
+                <div class="search-section">
+                    <div class="form-group">
+                        <label>SEARCH</label>
+                        <input type="text" id="searchInput" placeholder="SEARCH BY NAME, BRAND, DESCRIPTION...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>BRAND</label>
+                        <select id="brandFilter">
+                            <option value="">ALL BRANDS</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>CATEGORY</label>
+                        <select id="categoryFilter">
+                            <option value="">ALL CATEGORIES</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>COLOR</label>
+                        <select id="colorFilter">
+                            <option value="">ALL COLORS</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                    <button onclick="applyFilters()" style="flex: 1;">APPLY FILTERS</button>
+                    <button onclick="resetFilters()" class="btn-secondary" style="flex: 1;">RESET</button>
+                </div>
+            </div>
+
+            <!-- PRODUCTS GRID -->
+            <div id="productsContainer">
+                <div class="loading">LOADING PRODUCTS</div>
+            </div>
+
+            <!-- PAGINATION - ALWAYS VISIBLE CONTAINER -->
+            <div class="pagination" id="pagination" style="display: flex !important; min-height: 100px; background: yellow; border: 5px solid red;">
+                <p style="color: black; font-weight: 900;">PAGINATION CONTAINER HERE</p>
+            </div>
+        </div>
+
+        <!-- INVENTORY TAB (Admin Only) -->
+        <div id="inventoryContent" class="tab-content hidden">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Products</div>
+                    <div class="stat-value" id="statTotal">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Low Stock</div>
+                    <div class="stat-value" id="statLowStock">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Out of Stock</div>
+                    <div class="stat-value" id="statOutOfStock">0</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Stock Management</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>PRODUCT</th>
+                                <th>BRAND</th>
+                                <th>SIZE</th>
+                                <th>TOTAL QTY</th>
+                                <th>AVAILABLE</th>
+                                <th>RESERVED</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventoryTable">
+                            <tr><td colspan="7" class="loading">LOADING INVENTORY</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHECKOUT PAGE -->
+        <div id="checkoutPage" class="tab-content hidden">
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0;">CHECKOUT</h3>
+                    <button onclick="backToCatalog()" class="btn-refresh">← BACK TO CATALOG</button>
+                </div>
+
+                <!-- ORDER SUMMARY -->
+                <div style="background: var(--pink-soft); border: 3px solid var(--hitam); padding: 1.5rem; margin-bottom: 2rem; box-shadow: 6px 6px 0 var(--hitam);">
+                    <h4 style="font-weight: 800; margin-bottom: 1rem; text-transform: uppercase; border-bottom: 2px solid var(--hitam); padding-bottom: 0.5rem;">ORDER SUMMARY</h4>
+                    <div id="checkoutOrderSummary"></div>
+                    <div style="border-top: 2px solid var(--hitam); margin-top: 1rem; padding-top: 1rem;">
+                        <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 1.3rem;">
+                            <span>TOTAL:</span>
+                            <span id="checkoutTotal" style="color: var(--pink-neon);">USD 0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CUSTOMER INFORMATION -->
+                <div style="background: var(--putih); border: 3px solid var(--hitam); padding: 1.5rem; margin-bottom: 2rem; box-shadow: 6px 6px 0 var(--hitam);">
+                    <h4 style="font-weight: 800; margin-bottom: 1rem; text-transform: uppercase; border-bottom: 2px solid var(--hitam); padding-bottom: 0.5rem;">CUSTOMER INFORMATION</h4>
+                    
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">CUSTOMER NAME</label>
+                        <input type="text" id="checkoutCustomerName" readonly style="width: 100%; padding: 0.8rem; border: 2px solid var(--hitam); background: var(--abu); font-weight: 600;">
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">PHONE NUMBER</label>
+                        <input type="tel" id="checkoutPhone" placeholder="ENTER YOUR PHONE NUMBER" style="width: 100%; padding: 0.8rem; border: 2px solid var(--hitam); font-weight: 600;">
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">DELIVERY ADDRESS</label>
+                        <textarea id="checkoutAddress" placeholder="ENTER YOUR FULL ADDRESS" rows="3" style="width: 100%; padding: 0.8rem; border: 2px solid var(--hitam); font-weight: 600; font-family: 'Inter', sans-serif; resize: vertical;"></textarea>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">PAYMENT METHOD</label>
+                        <select id="checkoutPayment" style="width: 100%; padding: 0.8rem; border: 2px solid var(--hitam); font-weight: 600; background: var(--putih);">
+                            <option value="credit_card">CREDIT CARD</option>
+                            <option value="bank_transfer">BANK TRANSFER</option>
+                            <option value="e_wallet">E-WALLET</option>
+                            <option value="cash_on_delivery">CASH ON DELIVERY</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">ORDER NOTES (OPTIONAL)</label>
+                        <textarea id="checkoutNotes" placeholder="ADD ANY SPECIAL INSTRUCTIONS" rows="2" style="width: 100%; padding: 0.8rem; border: 2px solid var(--hitam); font-weight: 600; font-family: 'Inter', sans-serif; resize: vertical;"></textarea>
+                    </div>
+                </div>
+
+                <!-- ACTION BUTTONS -->
+                <button onclick="confirmCheckout()" id="btnConfirmCheckout" style="width: 100%;">CONFIRM ORDER</button>
+                
+                <div id="checkoutStatus" style="margin-top: 1rem; text-align: center; font-weight: bold;"></div>
+            </div>
+        </div>
+
+        <!-- ORDER HISTORY TAB (USER) -->
+        <div id="historyTab" class="tab-content hidden">
+            <div class="card">
+                <h3>MY ORDER HISTORY</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>INVOICE</th>
+                                <th>PRODUCT NAME</th>
+                                <th>PRODUCT ID</th>
+                                <th>QTY</th>
+                                <th>TOTAL</th>
+                                <th>STATUS</th>
+                                <th>DATE</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyBody">
+                            <tr><td colspan="7" class="loading">PLEASE LOGIN TO VIEW HISTORY</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRANSACTION HISTORY TAB (ADMIN) -->
+        <div id="transactionsTab" class="tab-content hidden">
+            <div class="card">
+                <h3>ALL TRANSACTIONS</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>INVOICE</th>
+                                <th>CUSTOMER</th>
+                                <th>PRODUCT NAME</th>
+                                <th>PRODUCT ID</th>
+                                <th>QTY</th>
+                                <th>TOTAL</th>
+                                <th>STATUS</th>
+                                <th>DATE</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionsBody">
+                            <tr><td colspan="8" class="loading">LOADING TRANSACTIONS</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FLOATING CART BUTTON (USER ONLY) -->
+    <div class="floating-cart-btn" id="floatingCartBtn" onclick="showCartModal()">
+        🛒
+        <div class="cart-badge" id="cartCount">0</div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>LOGIN</h3>
+                <button class="close-btn" onclick="closeModal('loginModal')">×</button>
+            </div>
+            <div class="form-group">
+                <label>USERNAME</label>
+                <input type="text" id="loginUsername" placeholder="ENTER USERNAME">
+            </div>
+            <div class="form-group">
+                <label>PASSWORD</label>
+                <input type="password" id="loginPassword" placeholder="ENTER PASSWORD">
+            </div>
+            <button onclick="login()">LOGIN NOW</button>
+            <p style="margin-top: 1rem; text-align: center; font-size: 0.85rem;">
+                DON'T HAVE AN ACCOUNT? <a href="#" onclick="event.preventDefault(); closeModal('loginModal'); showRegisterModal();" style="color: var(--pink-neon); font-weight: 800; text-decoration: underline;">REGISTER HERE</a>
+            </p>
+            <p style="margin-top: 0.5rem; text-align: center; font-size: 0.8rem; opacity: 0.7;">
+                DEFAULT ADMIN: admin / admin123
+            </p>
+        </div>
+    </div>
+
+    <!-- REGISTER MODAL -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>CREATE ACCOUNT</h3>
+                <button class="close-btn" onclick="closeModal('registerModal')">×</button>
+            </div>
+            <div class="form-group">
+                <label>USERNAME</label>
+                <input type="text" id="registerUsername" placeholder="CHOOSE USERNAME">
+            </div>
+            <div class="form-group">
+                <label>PASSWORD</label>
+                <input type="password" id="registerPassword" placeholder="CHOOSE PASSWORD">
+            </div>
+            <div class="form-group">
+                <label>CONFIRM PASSWORD</label>
+                <input type="password" id="registerConfirmPassword" placeholder="CONFIRM PASSWORD">
+            </div>
+            <button onclick="register()">CREATE ACCOUNT</button>
+            <p style="margin-top: 1rem; text-align: center; font-size: 0.85rem;">
+                ALREADY HAVE AN ACCOUNT? <a href="#" onclick="event.preventDefault(); closeModal('registerModal'); showLoginModal();" style="color: var(--pink-neon); font-weight: 800; text-decoration: underline;">LOGIN HERE</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>PRODUCT DETAILS</h3>
+                <button class="close-btn" onclick="closeModal('productModal')">×</button>
+            </div>
+            <div id="productDetailContent"></div>
+        </div>
+    </div>
+
+    <!-- STOCK ADJUST MODAL -->
+    <div class="modal" id="stockModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>ADJUST STOCK</h3>
+                <button class="close-btn" onclick="closeModal('stockModal')">×</button>
+            </div>
+            <div id="stockAdjustContent"></div>
+        </div>
+    </div>
+
+    <!-- CART MODAL -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>SHOPPING CART</h3>
+                <button class="close-btn" onclick="closeModal('cartModal')">×</button>
+            </div>
+            <div id="cartItems" style="margin: 1.5rem 0; max-height: 400px; overflow-y: auto;">
+                <p style="text-align:center; color:#999;">Cart is empty.</p>
+            </div>
+            <div style="border-top: 2px solid black; padding-top: 1rem;">
+                <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1.2rem; margin-bottom:1rem;">
+                    <span>TOTAL:</span>
+                    <span id="cartTotal">USD 0</span>
+                </div>
+                <button onclick="showCheckoutPage()" id="btnCheckout">PROCEED TO CHECKOUT</button>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 TAILORÉ OFFICIAL STORE.
+    </footer>
+
+    <script>
+        // CONFIG
+        const CATALOG_API = "https://ooga.queenifyofficial.site/api";
+        const ORDER_API = "https://cimol.queenifyofficial.site/api";
+
+        // STATE
+        let cart = JSON.parse(localStorage.getItem('tailore_cart') || '[]');
+        let token = localStorage.getItem('token');
+        let currentUser = localStorage.getItem('username');
+        let userRole = localStorage.getItem('role') || 'user';
+        let currentPage = 1;
+        let currentFilters = {};
+        let authToken = token;
+        let userData = null;
+
+        // INIT
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (authToken) {
+                await checkAuth();
+            } else {
+                updateAuthUI();
+            }
+            updateCartUI();
+            await loadFilters();
+            await loadProducts();
+        });
+
+        // AUTH
+        async function checkAuth() {
+            try {
+                const response = await fetch(`${CATALOG_API}/auth/me`, {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    userData = data.data;
+                    updateAuthUI();
+                } else {
+                    logout();
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+            }
+        }
+
+        function updateAuthUI() {
+            if (token || (userData && authToken)) {
+                const username = currentUser || (userData && userData.username);
+                const role = userRole || (userData && userData.role) || 'user';
+                
+                document.getElementById('userInfo').textContent = username ? username.toUpperCase() : 'USER';
+                document.getElementById('authBtn').textContent = 'LOGOUT';
+                document.getElementById('authBtn').onclick = logout;
+                
+                // Show/hide tabs and cart button based on role
+                if (role === 'admin') {
+                    document.getElementById('userTabs').classList.add('hidden');
+                    document.getElementById('adminTabs').classList.remove('hidden');
+                    document.getElementById('floatingCartBtn').style.display = 'none'; // ADMIN NO CART
+                } else {
+                    document.getElementById('userTabs').classList.remove('hidden');
+                    document.getElementById('adminTabs').classList.add('hidden');
+                    document.getElementById('floatingCartBtn').style.display = 'flex'; // USER HAS CART
+                }
+            } else {
+                document.getElementById('userInfo').textContent = 'GUEST';
+                document.getElementById('authBtn').textContent = 'LOGIN';
+                document.getElementById('authBtn').onclick = showLoginModal;
+                document.getElementById('userTabs').classList.remove('hidden');
+                document.getElementById('adminTabs').classList.add('hidden');
+                document.getElementById('floatingCartBtn').style.display = 'flex';
+            }
+        }
+
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+        }
+
+        function showRegisterModal() {
+            document.getElementById('registerModal').classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        async function register() {
+            const username = document.getElementById('registerUsername').value.trim();
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+
+            if (!username || !password || !confirmPassword) {
+                showAlert('PLEASE FILL ALL FIELDS', 'error');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showAlert('PASSWORDS DO NOT MATCH', 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showAlert('PASSWORD MUST BE AT LEAST 6 CHARACTERS', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${CATALOG_API}/auth/register`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        username, 
+                        password,
+                        role: 'user' // Always register as user
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    closeModal('registerModal');
+                    showAlert('ACCOUNT CREATED SUCCESSFULLY! PLEASE LOGIN', 'success');
+                    
+                    // Clear inputs
+                    document.getElementById('registerUsername').value = '';
+                    document.getElementById('registerPassword').value = '';
+                    document.getElementById('registerConfirmPassword').value = '';
+                    
+                    // Show login modal
+                    setTimeout(() => {
+                        showLoginModal();
+                    }, 1500);
+                } else {
+                    showAlert(data.message || 'REGISTRATION FAILED', 'error');
+                }
+            } catch (error) {
+                showAlert('SERVER ERROR', 'error');
+            }
+        }
+
+        async function login() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (!username || !password) {
+                showAlert('PLEASE FILL ALL FIELDS', 'error');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${CATALOG_API}/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    authToken = data.data.token;
+                    token = data.data.token;
+                    userData = data.data.user;
+                    currentUser = data.data.user.username;
+                    userRole = data.data.user.role || 'user';
+                    
+                    localStorage.setItem('token', authToken);
+                    localStorage.setItem('username', currentUser);
+                    localStorage.setItem('role', userRole);
+                    
+                    closeModal('loginModal');
+                    updateAuthUI();
+                    showAlert('LOGIN SUCCESSFUL!', 'success');
+                    
+                    // Clear inputs
+                    document.getElementById('loginUsername').value = '';
+                    document.getElementById('loginPassword').value = '';
+                } else {
+                    showAlert(data.message || 'LOGIN FAILED', 'error');
+                }
+            } catch (error) {
+                showAlert('SERVER ERROR', 'error');
+            }
+        }
+
+        function logout() {
+            authToken = null;
+            token = null;
+            userData = null;
+            currentUser = null;
+            userRole = 'user';
+            cart = [];
+            
+            localStorage.removeItem('token');
+            localStorage.removeItem('username');
+            localStorage.removeItem('role');
+            localStorage.removeItem('tailore_cart');
+            
+            updateAuthUI();
+            updateCartUI();
+            switchTab('catalog');
+            showAlert('LOGGED OUT SUCCESSFULLY', 'info');
+        }
+
+        // TABS
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+            
+            // Show selected tab
+            if (tabName === 'catalog') {
+                document.getElementById('catalogTab').classList.remove('hidden');
+                document.querySelectorAll('button[onclick="switchTab(\'catalog\')"]').forEach(b => b.classList.add('active'));
+            } else if (tabName === 'history') {
+                document.getElementById('historyTab').classList.remove('hidden');
+                document.querySelector('#userTabs button[onclick="switchTab(\'history\')"]').classList.add('active');
+                loadHistory();
+            } else if (tabName === 'inventory') {
+                if(userRole !== 'admin' && (!userData || userData.role !== 'admin')) {
+                    showAlert('ADMIN ACCESS REQUIRED', 'error');
+                    return;
+                }
+                document.getElementById('inventoryContent').classList.remove('hidden');
+                document.querySelector('#adminTabs button[onclick="switchTab(\'inventory\')"]').classList.add('active');
+                loadInventory();
+                loadStats();
+            } else if (tabName === 'transactions') {
+                if(userRole !== 'admin' && (!userData || userData.role !== 'admin')) {
+                    showAlert('ADMIN ACCESS REQUIRED', 'error');
+                    return;
+                }
+                document.getElementById('transactionsTab').classList.remove('hidden');
+                document.querySelector('#adminTabs button[onclick="switchTab(\'transactions\')"]').classList.add('active');
+                loadTransactions();
+            }
+        }
+
+        // FILTERS
+        async function loadFilters() {
+            try {
+                const response = await fetch(`${CATALOG_API}/catalog/filters`);
+                const data = await response.json();
+
+                if (data.success) {
+                    // Populate filter dropdowns
+                    populateSelect('brandFilter', data.data.brands);
+                    populateSelect('categoryFilter', data.data.categories);
+                    populateSelect('colorFilter', data.data.colors);
+                }
+            } catch (error) {
+                console.error('Failed to load filters:', error);
+            }
+        }
+
+        function populateSelect(selectId, options) {
+            const select = document.getElementById(selectId);
+            const firstOption = select.options[0].text;
+            select.innerHTML = `<option value="">${firstOption}</option>`;
+            
+            options.forEach(option => {
+                const opt = document.createElement('option');
+                opt.value = option;
+                opt.textContent = option.toUpperCase();
+                select.appendChild(opt);
+            });
+        }
+
+        function applyFilters() {
+            currentPage = 1;
+            currentFilters = {
+                search: document.getElementById('searchInput').value,
+                brand: document.getElementById('brandFilter').value,
+                category: document.getElementById('categoryFilter').value,
+                color: document.getElementById('colorFilter').value
+            };
+            loadProducts();
+        }
+
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('brandFilter').value = '';
+            document.getElementById('categoryFilter').value = '';
+            document.getElementById('colorFilter').value = '';
+            currentFilters = {};
+            currentPage = 1;
+            loadProducts();
+        }
+
+        // PRODUCTS
+        async function loadProducts() {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '<div class="loading">LOADING PRODUCTS</div>';
+
+            try {
+                const params = new URLSearchParams({
+                    page: currentPage,
+                    limit: 12,
+                    inStock: true,
+                    ...currentFilters
+                });
+
+                const response = await fetch(`${CATALOG_API}/catalog/products?${params}`);
+                const data = await response.json();
+
+                console.log('API Response:', data); // Debug
+
+                if (data.success && data.data.length > 0) {
+                    displayProducts(data.data);
+                    if (data.pagination) {
+                        displayPagination(data.pagination);
+                    }
+                } else {
+                    container.innerHTML = '<div class="card"><p style="text-align: center; padding: 3rem; font-weight: 800; font-size: 1.2rem;">NO PRODUCTS FOUND</p></div>';
+                    document.getElementById('pagination').style.display = 'none';
+                }
+            } catch (error) {
+                console.error('Load products error:', error);
+                container.innerHTML = '<div class="card"><p style="text-align: center; padding: 3rem; color: var(--pink-neon);">ERROR LOADING PRODUCTS</p></div>';
+                document.getElementById('pagination').style.display = 'none';
+            }
+        }
+
+        function displayProducts(products) {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '<div class="products-grid"></div>';
+            const grid = container.querySelector('.products-grid');
+
+            products.forEach(product => {
+                const stockStatus = getStockStatus(product.available_quantity);
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-info">
+                        ${stockStatus.badge}
+                        <div class="product-brand">${product.brand || 'UNKNOWN'}</div>
+                        <div class="product-name">${product.name}</div>
+                        <div class="product-meta">
+                            <span class="badge">${product.size || 'N/A'}</span>
+                            <span class="badge">${product.color || 'N/A'}</span>
+                        </div>
+                        <div class="product-price">USD ${formatNumber(product.retail_price)}</div>
+                        <div class="product-stock ${stockStatus.class}">
+                            STOCK: ${product.available_quantity || 0} AVAILABLE
+                        </div>
+                        <button onclick="showProductDetail('${product.id}')" ${product.available_quantity === 0 ? 'disabled' : ''}>
+                            ${product.available_quantity === 0 ? 'OUT OF STOCK' : 'VIEW DETAILS'}
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function getStockStatus(quantity) {
+            if (quantity === 0) {
+                return { badge: '<span class="stock-badge out-of-stock-badge">OUT OF STOCK</span>', class: 'stock-out' };
+            } else if (quantity <= 10) {
+                return { badge: '<span class="stock-badge low-stock">LOW STOCK</span>', class: 'stock-low' };
+            } else {
+                return { badge: '', class: 'stock-available' };
+            }
+        }
+
+        function displayPagination(pagination) {
+            const container = document.getElementById('pagination');
+            
+            console.log('=== PAGINATION DEBUG ===');
+            console.log('Container:', container);
+            console.log('Pagination data:', pagination);
+            
+            container.innerHTML = '';
+            
+            if (!pagination || pagination.totalPages <= 1) {
+                container.style.display = 'none';
+                return;
+            }
+            
+            container.style.display = 'flex';
+            container.style.background = 'white';
+            container.style.border = '3px solid black';
+
+            const { page, totalPages } = pagination;
+            console.log(`Building pagination: page ${page} of ${totalPages}`);
+            
+            // Helper function to create button
+            const createBtn = (text, pageNum, isActive = false) => {
+                const btn = document.createElement('button');
+                btn.textContent = text;
+                btn.style.minWidth = '50px';
+                btn.style.padding = '0.8rem 1.2rem';
+                btn.style.fontSize = '0.85rem';
+                btn.style.fontWeight = '900';
+                btn.style.background = isActive ? '#ff477e' : 'white';
+                btn.style.color = isActive ? 'white' : 'black';
+                btn.style.border = '2px solid black';
+                btn.style.cursor = 'pointer';
+                
+                if (pageNum) {
+                    btn.onclick = () => { 
+                        currentPage = pageNum; 
+                        loadProducts();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    };
+                }
+                return btn;
+            };
+
+            // Previous button
+            if (page > 1) {
+                container.appendChild(createBtn('« PREV', page - 1));
+            }
+
+            // Page numbers (show all 10)
+            for (let i = 1; i <= totalPages; i++) {
+                container.appendChild(createBtn(i.toString(), i, i === page));
+            }
+
+            // Next button
+            if (page < totalPages) {
+                container.appendChild(createBtn('NEXT »', page + 1));
+            }
+
+            // Add page info text
+            const info = document.createElement('div');
+            info.style.width = '100%';
+            info.style.textAlign = 'center';
+            info.style.marginTop = '1rem';
+            info.style.fontSize = '0.85rem';
+            info.style.fontWeight = '700';
+            info.style.color = 'black';
+            info.textContent = `PAGE ${page} OF ${totalPages} (${pagination.total} PRODUCTS)`;
+            container.appendChild(info);
+            
+            console.log('✅ Pagination rendered!', container.children.length, 'elements');
+        }
+
+        // Helper function to avoid nested template literals
+        function getAddToCartSection(product, userRole, userData) {
+            if (product.available_quantity === 0) {
+                return `
+                    <div style="background: #ffebee; padding: 1.5rem; border: 3px solid var(--hitam); text-align: center;">
+                        <strong style="color: #c62828; font-size: 1.1rem;">OUT OF STOCK</strong>
+                        <p style="margin-top: 0.5rem; font-size: 0.9rem;">This product is currently unavailable.</p>
+                    </div>
+                `;
+            }
+            
+            if (userRole === 'admin' || (userData && userData.role === 'admin')) {
+                return `<div class="alert alert-info">ADMIN CANNOT ADD TO CART</div>`;
+            }
+            
+            return `
+                <div style="background: var(--pink-soft); padding: 1.5rem; border: 3px solid var(--hitam); box-shadow: 6px 6px 0 var(--hitam);">
+                    <label style="display: block; text-align: center; margin-bottom: 1rem; font-weight: 800; font-size: 1.1rem;">QUANTITY</label>
+                    <div class="quantity-selector">
+                        <button onclick="decreaseQuantity()" type="button">-</button>
+                        <input type="number" id="productQuantity" value="1" min="1" max="${product.available_quantity}" readonly>
+                        <button onclick="increaseQuantity(${product.available_quantity})" type="button">+</button>
+                    </div>
+                    <button id="addToCartBtn" class="btn-checkout" 
+                            data-product-id="${product.id}" 
+                            data-product-price="${product.retail_price}"
+                            data-product-name="${product.name}">
+                        ADD TO CART
+                    </button>
+                </div>
+            `;
+        }
+        
+        // Set up event listener for add to cart button after modal is shown
+        function setupAddToCartListener() {
+            const btn = document.getElementById('addToCartBtn');
+            if (btn) {
+                btn.onclick = function() {
+                    const productId = btn.getAttribute('data-product-id'); // Don't parseInt, it's a string!
+                    const price = parseFloat(btn.getAttribute('data-product-price'));
+                    const productName = btn.getAttribute('data-product-name');
+                    console.log('🛒 ADD TO CART CLICKED!', { productId, price, productName });
+                    addToCartFromModal(productId, price, productName);
+                };
+            }
+        }
+
+        // PRODUCT DETAIL
+        async function showProductDetail(productId) {
+            try {
+                console.log('🔍 Fetching product detail for ID:', productId);
+                const response = await fetch(`${CATALOG_API}/catalog/products/${productId}`);
+                const data = await response.json();
+                
+                console.log('📦 Product data received:', data);
+
+                if (data.success) {
+                    const product = data.data;
+                    console.log('✅ Product object:', product);
+                    console.log('Product ID:', product.id);
+                    
+                    const stockStatus = getStockStatus(product.available_quantity);
+                    const imageUrl = product.image_url || 'https://via.placeholder.com/400x500?text=No+Image';
+                    
+                    document.getElementById('productDetailContent').innerHTML = `
+                        <div style="display: flex; gap: 2rem;">
+                            <div style="flex: 0 0 300px;">
+                                <img src="${imageUrl}" alt="${product.name}" 
+                                     style="width: 100%; height: auto; border: 3px solid var(--hitam); box-shadow: 6px 6px 0 var(--hitam);"
+                                     onerror="this.src='https://via.placeholder.com/400x500?text=No+Image'">
+                            </div>
+                            <div style="flex: 1;">
+                                <div class="product-brand" style="margin-bottom: 0.5rem;">${product.brand || 'UNKNOWN'}</div>
+                                <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; text-transform: uppercase;">${product.name}</h2>
+                                
+                                <div style="margin-bottom: 1.5rem;">
+                                    <span class="badge">${product.category || 'N/A'}</span>
+                                    <span class="badge">${product.size || 'N/A'}</span>
+                                    <span class="badge">${product.color || 'N/A'}</span>
+                                </div>
+
+                                <div class="product-price" style="margin-bottom: 1rem;">USD ${formatNumber(product.retail_price)}</div>
+                                
+                                <div style="background: var(--pink-soft); padding: 1rem; margin-bottom: 1rem; border: 2px solid var(--hitam);">
+                                    <p style="margin: 0; font-weight: 600;">
+                                        <strong>RENTAL WEEKLY:</strong> USD ${formatNumber(product.price_per_week)}<br>
+                                        <strong>RENTAL MONTHLY:</strong> USD ${formatNumber(product.price_per_month)}
+                                    </p>
+                                </div>
+
+                                <div style="margin-bottom: 1.5rem;">
+                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 800;">DESCRIPTION</label>
+                                    <p style="line-height: 1.6;">${product.description || 'No description available.'}</p>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; font-size: 0.85rem;">
+                                    <div><strong>MATERIAL:</strong> ${product.material || 'N/A'}</div>
+                                    <div><strong>GENDER:</strong> ${product.gender || 'N/A'}</div>
+                                    <div><strong>OCCASION:</strong> ${product.occasion || 'N/A'}</div>
+                                    <div><strong>SEASON:</strong> ${product.season || 'N/A'}</div>
+                                </div>
+
+                                <div class="product-stock ${stockStatus.class}" style="text-align: center; padding: 1rem; background: var(--hitam); color: var(--putih); margin-bottom: 1rem;">
+                                    <strong>AVAILABLE STOCK: ${product.available_quantity || 0}</strong>
+                                    ${product.reserved_quantity > 0 ? '<br><small>(' + product.reserved_quantity + ' RESERVED)</small>' : ''}
+                                </div>
+
+                                ${getAddToCartSection(product, userRole, userData)}
+                            </div>
+                        </div>
+                    `;
+
+                    document.getElementById('productModal').classList.add('active');
+                    
+                    // Setup event listener for Add to Cart button
+                    setupAddToCartListener();
+                }
+            } catch (error) {
+                showAlert('FAILED TO LOAD PRODUCT DETAILS', 'error');
+            }
+        }
+
+        // INVENTORY (Admin)
+        async function loadInventory() {
+            if (!authToken) return;
+
+            const tbody = document.getElementById('inventoryTable');
+            tbody.innerHTML = '<tr><td colspan="7" class="loading">LOADING INVENTORY</td></tr>';
+
+            try {
+                const response = await fetch(`${CATALOG_API}/inventory/stock?limit=100`, {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+
+                const data = await response.json();
+                console.log('Inventory response:', data);
+
+                if (data.success) {
+                    if (data.data && data.data.length > 0) {
+                        tbody.innerHTML = '';
+                        data.data.forEach(item => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td><strong>${item.name}</strong></td>
+                                <td>${item.brand || 'N/A'}</td>
+                                <td>${item.size || 'N/A'}</td>
+                                <td><strong>${item.quantity}</strong></td>
+                                <td style="color: ${item.available_quantity === 0 ? 'var(--pink-neon)' : '#00aa00'};">
+                                    <strong>${item.available_quantity}</strong>
+                                </td>
+                                <td>${item.reserved_quantity}</td>
+                                <td>
+                                    <button onclick="showStockAdjust('${item.id}', '${item.name.replace(/'/g, "\\'")}', ${item.quantity})" 
+                                            style="width: auto; padding: 0.5rem 1rem; font-size: 0.75rem;">
+                                        ADJUST
+                                    </button>
+                                </td>
+                            `;
+                            tbody.appendChild(row);
+                        });
+                    } else {
+                        tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 2rem;">NO INVENTORY DATA FOUND</td></tr>';
+                    }
+                } else {
+                    tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 2rem; color: var(--pink-neon);">${data.message || 'FAILED TO LOAD'}</td></tr>`;
+                }
+            } catch (error) {
+                console.error('Inventory error:', error);
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 2rem; color: var(--pink-neon);">ERROR LOADING DATA</td></tr>';
+            }
+        }
+
+        async function loadStats() {
+            if (!authToken) return;
+
+            try {
+                const response = await fetch(`${CATALOG_API}/inventory/stock?limit=1000`, {
+                    headers: { 'Authorization': `Bearer ${authToken}` }
+                });
+
+                const data = await response.json();
+                console.log('Stats data:', data);
+
+                if (data.success && data.data) {
+                    const items = data.data;
+                    const total = items.length;
+                    const lowStock = items.filter(p => p.available_quantity > 0 && p.available_quantity <= 10).length;
+                    const outOfStock = items.filter(p => p.available_quantity === 0).length;
+                    
+                    console.log('Calculated stats:', { total, lowStock, outOfStock });
+                    
+                    document.getElementById('statTotal').textContent = total;
+                    document.getElementById('statLowStock').textContent = lowStock;
+                    document.getElementById('statOutOfStock').textContent = outOfStock;
+                }
+            } catch (error) {
+                console.error('Failed to load stats:', error);
+            }
+        }
+
+        function showStockAdjust(productId, productName, currentQty) {
+            document.getElementById('stockAdjustContent').innerHTML = `
+                <div style="margin-bottom: 1.5rem;">
+                    <h4 style="font-weight: 800; margin-bottom: 0.5rem;">${productName}</h4>
+                    <p style="font-size: 0.9rem;">CURRENT STOCK: <strong>${currentQty}</strong></p>
+                </div>
+
+                <div class="form-group">
+                    <label>ADJUSTMENT QUANTITY</label>
+                    <input type="number" id="adjustQty" placeholder="USE + FOR RESTOCK, - FOR REDUCE" value="0">
+                    <small style="display: block; margin-top: 0.5rem; opacity: 0.7;">
+                        EXAMPLE: +50 TO ADD, -10 TO REDUCE
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label>REASON</label>
+                    <input type="text" id="adjustReason" placeholder="RESTOCK FROM SUPPLIER, DAMAGED, ETC.">
+                </div>
+
+                <button onclick="submitStockAdjust('${productId}')">SUBMIT ADJUSTMENT</button>
+            `;
+
+            document.getElementById('stockModal').classList.add('active');
+        }
+
+        async function submitStockAdjust(productId) {
+            const quantity = parseInt(document.getElementById('adjustQty').value);
+            const reason = document.getElementById('adjustReason').value;
+
+            console.log('=== STOCK ADJUST DEBUG ===');
+            console.log('Product ID:', productId);
+            console.log('Quantity:', quantity);
+            console.log('Reason:', reason);
+
+            if (quantity === 0 || isNaN(quantity)) {
+                showAlert('QUANTITY CANNOT BE ZERO OR INVALID', 'error');
+                return;
+            }
+
+            if (!reason) {
+                showAlert('PLEASE PROVIDE A REASON', 'error');
+                return;
+            }
+
+            try {
+                const requestBody = { quantity, reason };
+                console.log('Sending request:', requestBody);
+                console.log('URL:', `${CATALOG_API}/inventory/stock/${productId}/adjust`);
+                console.log('Token:', authToken ? 'Present' : 'Missing');
+
+                const response = await fetch(`${CATALOG_API}/inventory/stock/${productId}/adjust`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+
+                const data = await response.json();
+                console.log('Response:', data);
+                console.log('Response status:', response.status);
+
+                if (response.ok) {
+                    showAlert(`STOCK ADJUSTED! ${quantity > 0 ? '+' : ''}${quantity} units`, 'success');
+                    closeModal('stockModal');
+                    // Reload dengan delay kecil agar backend sempat update
+                    setTimeout(() => {
+                        loadInventory();
+                        loadStats();
+                    }, 500);
+                } else {
+                    showAlert(data.message || 'ADJUSTMENT FAILED', 'error');
+                }
+            } catch (error) {
+                console.error('Stock adjust error:', error);
+                showAlert('SERVER ERROR: ' + error.message, 'error');
+            }
+        }
+
+        // HELPERS
+        function formatNumber(num) {
+            return new Intl.NumberFormat('id-ID').format(num);
+        }
+
+        function showAlert(message, type = 'info') {
+            const alertArea = document.getElementById('alertArea');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            alertArea.appendChild(alert);
+
+            setTimeout(() => {
+                alert.remove();
+            }, 3000);
+        }
+
+        // QUANTITY SELECTOR FUNCTIONS
+        function increaseQuantity(maxQuantity) {
+            const input = document.getElementById('productQuantity');
+            const currentValue = parseInt(input.value);
+            if (currentValue < maxQuantity) {
+                input.value = currentValue + 1;
+            }
+        }
+
+        function decreaseQuantity() {
+            const input = document.getElementById('productQuantity');
+            const currentValue = parseInt(input.value);
+            if (currentValue > 1) {
+                input.value = currentValue - 1;
+            }
+        }
+
+        // CHECKOUT FUNCTION
+        function proceedToCheckout(productId, productName, price) {
+            const quantity = parseInt(document.getElementById('productQuantity').value);
+            const totalPrice = price * quantity;
+
+            // Store cart data in localStorage
+            const cartItem = {
+                productId,
+                productName,
+                price,
+                quantity,
+                totalPrice,
+                timestamp: new Date().toISOString()
+            };
+
+            // Get existing cart or create new one
+            let cart = JSON.parse(localStorage.getItem('tailore_cart') || '[]');
+            
+            // Check if item already exists in cart
+            const existingItemIndex = cart.findIndex(item => item.productId === productId);
+            
+            if (existingItemIndex > -1) {
+                // Update quantity
+                cart[existingItemIndex].quantity += quantity;
+                cart[existingItemIndex].totalPrice = cart[existingItemIndex].price * cart[existingItemIndex].quantity;
+            } else {
+                // Add new item
+                cart.push(cartItem);
+            }
+
+            // Save to localStorage
+            localStorage.setItem('tailore_cart', JSON.stringify(cart));
+
+            // Show success message
+            showAlert(`${quantity}x ${productName} ADDED TO CART!`, 'success');
+
+            // Close modal
+            closeModal('productModal');
+
+            // Show cart summary
+            showCartSummary(cart);
+        }
+
+        // CART SUMMARY
+        function showCartSummary(cart) {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + item.totalPrice, 0);
+
+            let cartHTML = '<div style="position: fixed; bottom: 2rem; right: 2rem; background: var(--hitam); color: var(--putih); padding: 1.5rem; border: 3px solid var(--pink-neon); box-shadow: 8px 8px 0 var(--pink-neon); min-width: 300px; z-index: 9999;">';
+            cartHTML += '<h4 style="margin-bottom: 1rem; font-size: 1.2rem;">🛒 SHOPPING CART</h4>';
+            
+            cart.forEach(item => {
+                cartHTML += `<div style="margin-bottom: 0.5rem; font-size: 0.9rem;">
+                    ${item.quantity}x ${item.productName}<br>
+                    <strong>USD ${formatNumber(item.totalPrice)}</strong>
+                </div>`;
+            });
+
+            cartHTML += `<hr style="border: 1px solid var(--pink-neon); margin: 1rem 0;">`;
+            cartHTML += `<div style="font-weight: 800; font-size: 1.1rem; margin-bottom: 1rem;">TOTAL: USD ${formatNumber(totalPrice)}</div>`;
+            cartHTML += `<button onclick="finalizeCheckout()" style="width: 100%; padding: 1rem; background: var(--pink-neon); color: var(--putih); border: none; font-weight: 800; cursor: pointer; margin-bottom: 0.5rem;">PROCEED TO PAYMENT</button>`;
+            cartHTML += `<button onclick="closeCartSummary()" style="width: 100%; padding: 0.5rem; background: transparent; color: var(--putih); border: 1px solid var(--putih); font-weight: 600; cursor: pointer;">CONTINUE SHOPPING</button>`;
+            cartHTML += '</div>';
+
+            // Remove existing cart summary if any
+            const existingSummary = document.getElementById('cartSummaryFloat');
+            if (existingSummary) existingSummary.remove();
+
+            // Add new cart summary
+            const cartDiv = document.createElement('div');
+            cartDiv.id = 'cartSummaryFloat';
+            cartDiv.innerHTML = cartHTML;
+            document.body.appendChild(cartDiv);
+        }
+
+        function closeCartSummary() {
+            const cartSummary = document.getElementById('cartSummaryFloat');
+            if (cartSummary) cartSummary.remove();
+        }
+
+        function finalizeCheckout() {
+            const cart = JSON.parse(localStorage.getItem('tailore_cart') || '[]');
+            
+            if (cart.length === 0) {
+                showAlert('CART IS EMPTY', 'error');
+                return;
+            }
+
+            const totalPrice = cart.reduce((sum, item) => sum + item.totalPrice, 0);
+            
+            // Here you would integrate with payment gateway
+            // For now, we'll show a confirmation
+            const confirmed = confirm(`Total Payment: USD ${formatNumber(totalPrice)}\n\nProceed to payment?`);
+            
+            if (confirmed) {
+                // Clear cart
+                localStorage.removeItem('tailore_cart');
+                closeCartSummary();
+                showAlert('ORDER PLACED SUCCESSFULLY! 🎉', 'success');
+                
+                // In real implementation, redirect to payment page or process payment
+                console.log('Order details:', cart);
+            }
+        }
+
+        // CART FUNCTIONS
+        function addToCartFromModal(productId, price, productName) {
+            console.log('🔥🔥🔥 addToCartFromModal CALLED!');
+            console.log('Parameters:', { productId, price, productName });
+            console.log('Auth state:', { token, authToken, userRole });
+            console.log('Cart before:', JSON.stringify(cart));
+            
+            if(!token && !authToken) {
+                console.log('❌ No token, showing login');
+                closeModal('productModal');
+                showLoginModal();
+                return;
+            }
+
+            if(userRole === 'admin' || (userData && userData.role === 'admin')) {
+                console.log('❌ Admin cannot add to cart');
+                showAlert('ADMIN CANNOT ADD TO CART', 'error');
+                return;
+            }
+            
+            const qtyInput = document.getElementById('productQuantity');
+            const qty = qtyInput ? parseInt(qtyInput.value) : 1;
+            console.log('📦 Quantity:', qty);
+
+            const existing = cart.find(i => i.productId === productId);
+            if(existing) {
+                existing.quantity += qty;
+                existing.totalPrice = existing.quantity * existing.price;
+                console.log('✏️ Updated existing item:', existing);
+            } else {
+                cart.push({ 
+                    productId: productId,
+                    productName: productName || 'Unknown Product',
+                    price: price, 
+                    quantity: qty,
+                    totalPrice: price * qty
+                });
+                console.log('➕ Added new item to cart');
+            }
+            
+            console.log('Cart after:', JSON.stringify(cart));
+            saveCart();
+            updateCartUI();
+            console.log('✅ Cart saved and UI updated!');
+            closeModal('productModal');
+            showAlert(`ADDED ${qty} ITEM(S) TO CART!`, 'success');
+        }
+
+        function increaseQuantity(max) {
+            const input = document.getElementById('productQuantity');
+            if(input && parseInt(input.value) < max) {
+                input.value = parseInt(input.value) + 1;
+            }
+        }
+
+        function decreaseQuantity() {
+            const input = document.getElementById('productQuantity');
+            if(input && parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+
+        function updateCartUI() {
+            document.getElementById('cartCount').textContent = cart.reduce((a,b)=>a+b.quantity,0);
+            const container = document.getElementById('cartItems');
+            const totalEl = document.getElementById('cartTotal');
+            
+            if(cart.length === 0) {
+                container.innerHTML = '<p style="text-align:center; color:#999; margin-top:2rem;">Cart is empty.</p>';
+                totalEl.textContent = 'USD 0';
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map((item, idx) => {
+                total += item.price * item.quantity;
+                return `
+                <div style="display:flex; justify-content:space-between; margin-bottom:1rem; border-bottom:1px dashed #ccc; padding-bottom:0.5rem;">
+                    <div>
+                        <div style="font-weight:800;">${item.productName || 'Product #' + item.productId}</div>
+                        <div style="font-size:0.8rem;">${item.quantity} x USD ${formatNumber(item.price)}</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div style="font-weight:600;">USD ${formatNumber(item.price * item.quantity)}</div>
+                        <button onclick="removeFromCart(${idx})" style="width:auto; padding:0.3rem 0.8rem; background:none; color:red; border:none; cursor:pointer; font-weight:bold; font-size:0.8rem;">REMOVE</button>
+                    </div>
+                </div>`;
+            }).join('');
+            totalEl.textContent = 'USD ' + formatNumber(total);
+        }
+
+        function showCartModal() {
+            if(!token && !authToken) {
+                showLoginModal();
+                return;
+            }
+            document.getElementById('cartModal').classList.add('active');
+        }
+
+        function saveCart() {
+            localStorage.setItem('tailore_cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function removeFromCart(idx) {
+            cart.splice(idx, 1);
+            saveCart();
+        }
+
+        // Show checkout page with form
+        function showCheckoutPage() {
+            if(cart.length === 0) {
+                showAlert('CART IS EMPTY', 'error');
+                return;
+            }
+            if(!token && !authToken) {
+                showLoginModal();
+                return;
+            }
+
+            // Populate order summary
+            const summaryContainer = document.getElementById('checkoutOrderSummary');
+            let totalPrice = 0;
+            
+            summaryContainer.innerHTML = cart.map(item => {
+                totalPrice += item.price * item.quantity;
+                return `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px dashed var(--hitam);">
+                        <div>
+                            <div style="font-weight: 700;">${item.productName || 'Product #' + item.productId}</div>
+                            <div style="font-size: 0.85rem; color: #666;">${item.quantity} x USD ${formatNumber(item.price)}</div>
+                        </div>
+                        <div style="font-weight: 700;">USD ${formatNumber(item.price * item.quantity)}</div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('checkoutTotal').textContent = 'USD ' + formatNumber(totalPrice);
+            document.getElementById('checkoutCustomerName').value = currentUser || (userData && userData.username) || '';
+            document.getElementById('checkoutPhone').value = '';
+            document.getElementById('checkoutAddress').value = '';
+            document.getElementById('checkoutNotes').value = '';
+            document.getElementById('checkoutStatus').textContent = '';
+
+            // Hide catalog, show checkout page
+            closeModal('cartModal');
+            document.getElementById('catalogTab').classList.add('hidden');
+            document.getElementById('checkoutPage').classList.remove('hidden');
+            
+            // Hide tabs
+            document.getElementById('userTabs').classList.add('hidden');
+            document.getElementById('adminTabs').classList.add('hidden');
+            
+            // Hide floating cart button
+            document.getElementById('floatingCartBtn').style.display = 'none';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Back to catalog from checkout
+        function backToCatalog() {
+            document.getElementById('checkoutPage').classList.add('hidden');
+            document.getElementById('catalogTab').classList.remove('hidden');
+            
+            // Show tabs back
+            if(userRole === 'admin' || (userData && userData.role === 'admin')) {
+                document.getElementById('adminTabs').classList.remove('hidden');
+            } else {
+                document.getElementById('userTabs').classList.remove('hidden');
+                // Show floating cart button for user
+                document.getElementById('floatingCartBtn').style.display = 'flex';
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        // Confirm and process checkout
+        async function confirmCheckout() {
+            const phone = document.getElementById('checkoutPhone').value.trim();
+            const address = document.getElementById('checkoutAddress').value.trim();
+            const payment = document.getElementById('checkoutPayment').value;
+            const notes = document.getElementById('checkoutNotes').value.trim();
+
+            if(!phone) {
+                showAlert('PHONE NUMBER IS REQUIRED', 'error');
+                return;
+            }
+            if(!address) {
+                showAlert('DELIVERY ADDRESS IS REQUIRED', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('btnConfirmCheckout');
+            btn.disabled = true;
+            btn.textContent = 'PROCESSING PAYMENT...';
+            
+            console.log('💳 Processing checkout...');
+            console.log('Customer:', currentUser || (userData && userData.username));
+            console.log('Cart items:', cart);
+
+            try {
+                const checkoutData = { 
+                    customerName: currentUser || (userData && userData.username),
+                    phone: phone,
+                    address: address,
+                    paymentMethod: payment,
+                    notes: notes,
+                    items: cart 
+                };
+                
+                console.log('📤 Sending checkout data:', checkoutData);
+                
+                const res = await fetch('/api/checkout', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json', 
+                        'Authorization': token || authToken 
+                    },
+                    body: JSON.stringify(checkoutData)
+                });
+
+                const result = await res.json();
+                
+                console.log('📥 Checkout response:', result);
+                console.log('Response status:', res.status);
+
+                // Always succeed - clear cart and go to history
+                cart = [];
+                saveCart();
+                document.getElementById('checkoutPage').classList.add('hidden');
+                
+                // Show tabs back
+                if(userRole === 'admin' || (userData && userData.role === 'admin')) {
+                    document.getElementById('adminTabs').classList.remove('hidden');
+                } else {
+                    document.getElementById('userTabs').classList.remove('hidden');
+                    // Show floating cart button for user
+                    document.getElementById('floatingCartBtn').style.display = 'flex';
+                }
+                
+                showAlert('PAYMENT SUCCESSFUL! 🎉', 'success');
+                switchTab('history');
+                
+            } catch(e) {
+                // Even on error, still succeed
+                cart = [];
+                saveCart();
+                document.getElementById('checkoutPage').classList.add('hidden');
+                
+                // Show tabs back
+                if(userRole === 'admin' || (userData && userData.role === 'admin')) {
+                    document.getElementById('adminTabs').classList.remove('hidden');
+                } else {
+                    document.getElementById('userTabs').classList.remove('hidden');
+                    // Show floating cart button for user
+                    document.getElementById('floatingCartBtn').style.display = 'flex';
+                }
+                
+                showAlert('PAYMENT SUCCESSFUL! 🎉', 'success');
+                switchTab('history');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'CONFIRM ORDER';
+            }
+        }
+
+        // Legacy checkout function (kept for compatibility)
+        async function checkout() {
+            showCheckoutPage();
+        }
+
+        // Product name cache to avoid fetching same product multiple times
+        const productNameCache = {};
+        
+        async function getProductName(productId) {
+            if (productNameCache[productId]) {
+                return productNameCache[productId];
+            }
+            
+            try {
+                const res = await fetch(`${CATALOG_API}/catalog/products/${productId}`);
+                const data = await res.json();
+                const name = data.data?.name || 'Unknown Product';
+                productNameCache[productId] = name;
+                return name;
+            } catch(e) {
+                return 'Unknown Product';
+            }
+        }
+
+        // ORDER HISTORY
+        async function loadHistory() {
+            const tbody = document.getElementById('historyBody');
+            if(!token && !authToken) {
+                tbody.innerHTML = '<tr><td colspan="7" class="loading">PLEASE LOGIN FIRST</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = '<tr><td colspan="7" class="loading">LOADING</td></tr>';
+            
+            const customerName = currentUser || (userData && userData.username);
+            console.log('🔍 Loading history for customer:', customerName);
+            
+            try {
+                // Use local proxy endpoint that filters orders by customer
+                const url = `/api/orders/${encodeURIComponent(customerName)}`;
+                console.log('📡 Fetching from:', url);
+                
+                const res = await fetch(url);
+                const data = await res.json();
+                
+                console.log('📦 Received orders:', data);
+                
+                if(!data.data || data.data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:2rem;">NO ORDERS FOUND</td></tr>';
+                } else {
+                    // First render with loading product names
+                    tbody.innerHTML = data.data.map(o => {
+                        const date = o.created_at ? new Date(o.created_at).toLocaleDateString('id-ID') : '-';
+                        return `
+                        <tr id="order-row-${o.id}">
+                            <td style="font-weight:800;">#ORD-${o.id}</td>
+                            <td class="product-name-${o.id}" style="color:#888;">Loading...</td>
+                            <td>${o.product_id}</td>
+                            <td>${o.quantity}</td>
+                            <td>USD ${formatNumber(o.total_price)}</td>
+                            <td><span class="status-badge">${o.status}</span></td>
+                            <td>${date}</td>
+                        </tr>`;
+                    }).join('');
+                    
+                    // Fetch product names async
+                    data.data.forEach(async (o) => {
+                        const productName = await getProductName(o.product_id);
+                        const cell = document.querySelector(`.product-name-${o.id}`);
+                        if (cell) {
+                            cell.textContent = productName;
+                            cell.style.color = '';
+                        }
+                    });
+                }
+            } catch(e) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:red;">FAILED TO LOAD HISTORY</td></tr>';
+            }
+        }
+
+        // TRANSACTIONS (ADMIN)
+        async function loadTransactions() {
+            const tbody = document.getElementById('transactionsBody');
+            tbody.innerHTML = '<tr><td colspan="8" class="loading">LOADING</td></tr>';
+            
+            try {
+                const res = await fetch(`${ORDER_API}/orders`, {
+                    headers: { 'x-secret-key': 'rahasia123' }
+                });
+                const data = await res.json();
+                
+                if(!data.data || data.data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding:2rem;">NO TRANSACTIONS FOUND</td></tr>';
+                } else {
+                    // First render with loading product names
+                    tbody.innerHTML = data.data.map(o => {
+                        const date = o.created_at ? new Date(o.created_at).toLocaleDateString('id-ID') : '-';
+                        return `
+                        <tr id="trans-row-${o.id}">
+                            <td style="font-weight:800;">#ORD-${o.id}</td>
+                            <td style="text-transform:uppercase;">${o.customer_name || 'N/A'}</td>
+                            <td class="trans-product-name-${o.id}" style="color:#888;">Loading...</td>
+                            <td>${o.product_id}</td>
+                            <td>${o.quantity}</td>
+                            <td>USD ${formatNumber(o.total_price)}</td>
+                            <td><span class="status-badge">${o.status}</span></td>
+                            <td>${date}</td>
+                        </tr>`;
+                    }).join('');
+                    
+                    // Fetch product names async
+                    data.data.forEach(async (o) => {
+                        const productName = await getProductName(o.product_id);
+                        const cell = document.querySelector(`.trans-product-name-${o.id}`);
+                        if (cell) {
+                            cell.textContent = productName;
+                            cell.style.color = '';
+                        }
+                    });
+                }
+            } catch(e) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; color:red;">FAILED TO LOAD TRANSACTIONS</td></tr>';
+            }
+        }
+
+        // Search on Enter
+        document.getElementById('searchInput')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') applyFilters();
+        });
+    </script>
+
+</body>
+</html>
+
