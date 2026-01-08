@@ -1,36 +1,16 @@
 # Tailoré Integration Service
 
-Layanan integrasi untuk e-commerce rental fashion yang mengintegrasikan **Catalog Service (Ooga)** dan **Order Service (Cimol)**.
+Layanan integrasi yang menghubungkan **Catalog Service (Ooga)** dan **Order Service (Cimol)** untuk sistem e-commerce Tailoré.
 
 [Tailoré Web](https://tailore-service.vercel.app/)
 
----
-
 ## 📋 Deskripsi
 
-Service ini berfungsi sebagai **frontend integration layer** yang:
-- Menyediakan UI untuk shopping experience yang lengkap
-- Mengkoordinasikan proses checkout dengan **2-Phase Commit**
-- Mengintegrasikan authentication antara kedua service
-- Menangani cart management di client-side
-
-### Analisis Layanan Kelompok (Point A)
-
-**Catalog Service (Ooga)**:
-- ✅ JWT auth & role-based access
-- ✅ Product management dengan filter lengkap
-- ✅ 2PC stock reservation
-- ⚠️ Butuh image upload & bulk operations
-
-**Order Service (Cimol)**:
-- ✅ Order creation & invoice generation
-- ✅ Transaction history (user & admin)
-- ✅ Secret key authentication
-- ⚠️ Butuh order status update & notifications
-
-**Tanggapan**: Kedua service sudah bagus dengan clear separation of concerns. Rekomendasi: standardize error format & add API gateway.
-
----
+Service ini berfungsi sebagai **middleware/orchestrator** yang:
+- Mengoordinasikan proses checkout antara Catalog dan Order service
+- Mengimplementasikan **2-Phase Commit** untuk transaksi yang konsisten
+- Menyediakan frontend untuk shopping experience yang lengkap
+- Menangani stock reservation dan commit process
 
 ## 🏗️ Arsitektur
 
@@ -41,11 +21,11 @@ Service ini berfungsi sebagai **frontend integration layer** yang:
        │ HTTP Request
        ▼
 ┌─────────────────────────┐
-│  Tailoré Frontend       │ ◄─── Integration Service
-│  (SPA - Port 3000)      │
+│  Integration Service    │ ◄─── Service ini
+│  (Port 5000)            │
 └───┬─────────────┬───────┘
     │             │
-    │ JWT         │ JWT + Secret
+    │             │ HTTPS
     ▼             ▼
 ┌──────────┐  ┌──────────┐
 │  Ooga    │  │  Cimol   │
@@ -53,235 +33,198 @@ Service ini berfungsi sebagai **frontend integration layer** yang:
 └──────────┘  └──────────┘
 ```
 
-**Integration Strategy (Point B & C)**:
-1. **Auth**: Single sign-on via Catalog JWT
-2. **State**: Cart di localStorage, data di backend
-3. **Transaction**: 2PC (reserve → order → commit)
-4. **UI**: Unified experience untuk kedua service
-
----
-
 ## ✨ Fitur
 
-### Frontend Integration Layer (Layanan Baru - Point C)
-- ✅ Product catalog dengan search & filter
-- ✅ Shopping cart management (localStorage)
-- ✅ 2-Phase Commit checkout flow
-- ✅ Order history tracking
-- ✅ Admin dashboard (inventory & transactions)
-- ✅ Responsive design (cherry/green theme)
+### 1. **Checkout Process (2-Phase Commit)**
+- ✅ Reserve stock di Catalog Service
+- ✅ Create order di Order Service  
+- ✅ Commit stock untuk finalisasi
+- ✅ Rollback handling (jika diperlukan)
 
-### Untuk User
-- Browse products dengan pagination
-- Add to cart & adjust quantity
-- Checkout dengan form lengkap
-- View order history
+### 2. **Order History**
+- Filter orders berdasarkan customer name
+- Proxy ke Order Service dengan filtering
 
-### Untuk Admin
-- Inventory statistics & management
-- Stock adjustment
-- View all transactions
+### 3. **Frontend Interface**
+- Product catalog dengan filter & search
+- Shopping cart management
+- Login/logout functionality
+- Order history view
 
----
-
-## 🚀 Instalasi
+## 🚀 Cara Menjalankan
 
 ### Prerequisites
-- Node.js v14+
-- npm/yarn
+- Node.js v14 atau lebih tinggi
+- NPM atau Yarn
 
-### Setup
+### Instalasi
 
+1. Clone repository
 ```bash
-# Clone repo
-git clone <url>
-cd Integrasi-Tailore-Service
+git clone <repository-url>
+cd Tailore_Service
+```
 
-# Install
+2. Install dependencies
+```bash
 npm install
+```
 
-# Run
+3. Jalankan service
+```bash
 npm start
 ```
 
-Service berjalan di **http://localhost:3000**
-
----
+Service akan berjalan di **http://localhost:5000**
 
 ## 📡 API Endpoints
 
-### Catalog Service (Ooga)
-**Base URL**: `https://ooga.queenifyofficial.site/api`
+### 1. POST `/api/checkout`
+Memproses checkout dengan 2-phase commit.
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/auth/register` | Register user |
-| POST | `/auth/login` | Login & get JWT |
-| GET | `/catalog/products` | List products |
-| POST | `/catalog/reserve` | Reserve stock (2PC) |
-| POST | `/catalog/commit` | Commit reservation |
+**Headers:**
+```
+Authorization: Bearer <token>
+Content-Type: application/json
+```
 
-### Order Service (Cimol)
-**Base URL**: `https://cimol.queenifyofficial.site/api`
+**Request Body:**
+```json
+{
+  "customerName": "John Doe",
+  "items": [
+    {
+      "productId": 1,
+      "quantity": 2
+    }
+  ]
+}
+```
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/orders` | Create order |
-| GET | `/orders/history` | User orders |
-| GET | `/orders/transactions` | Admin: all orders |
+**Response Success (200):**
+```json
+{
+  "success": true,
+  "message": "Transaksi Berhasil!",
+  "invoices": ["#ORD-123", "#ORD-124"]
+}
+```
 
----
+**Response Error (401/400/500):**
+```json
+{
+  "success": false,
+  "message": "Error message",
+  "error": "Detailed error"
+}
+```
 
-## 🔗 Service Integration
+### 2. GET `/api/orders/:customerName`
+Mendapatkan order history berdasarkan nama customer.
 
-| Service | URL | Function |
-|---------|-----|----------|
-| **Catalog (Ooga)** | https://ooga.queenifyofficial.site/api | Products, auth, stock |
-| **Order (Cimol)** | https://cimol.queenifyofficial.site/api | Orders, invoices |
+**Response (200):**
+```json
+{
+  "success": true,
+  "data": [
+    {
+      "id": 123,
+      "customer_name": "John Doe",
+      "product_id": 1,
+      "quantity": 2,
+      "total_price": 500000,
+      "created_at": "2026-01-05T10:00:00Z"
+    }
+  ]
+}
+```
 
----
+## 🔗 Connected Services
+
+| Service | URL | Purpose |
+|---------|-----|---------|
+| **Catalog (Ooga)** | https://ooga.queenifyofficial.site/api | Product & inventory management |
+| **Order (Cimol)** | https://cimol.queenifyofficial.site/api | Order processing |
 
 ## 📦 Dependencies
 
 ```json
 {
   "express": "^4.18.2",
+  "axios": "^1.6.0",
   "cors": "^2.8.5"
 }
 ```
 
----
-
 ## 🔐 Authentication
 
-- **Frontend → Catalog**: `Bearer <token>`
-- **Frontend → Order**: `Bearer <token>` + `x-secret-key: rahasia123`
+- **Frontend → Integration Service**: Bearer token dari Catalog Service
+- **Integration Service → Order Service**: Secret key (`x-secret-key: rahasia123`)
 
-Login menggunakan Catalog Service, token digunakan untuk kedua service.
-
----
-
-## 🎯 Transaction Flow (2-Phase Commit)
+## 🎯 Transaction Flow
 
 ```
-1. User checkout
+1. User clicks "Checkout"
    ↓
-2. Reserve stock (Catalog)
+2. Frontend sends POST /api/checkout
    ↓
-3. Create order (Order Service)
+3. Integration Service:
+   ├─→ Reserve stock (Ooga)
+   ├─→ Create orders (Cimol)
+   └─→ Commit stock (Ooga)
    ↓
-4. Commit reservation (Catalog)
-   ↓
-5. Success / Rollback if failed
+4. Return order IDs to user
 ```
-
-**Implementation**:
-```javascript
-try {
-  // Phase 1: Reserve
-  const reservation = await reserveStock(items);
-  
-  // Phase 2: Order
-  const orders = await createOrders(items);
-  
-  // Phase 3: Commit
-  await commitReservation(reservation.id);
-} catch (error) {
-  // Rollback
-  await rollbackReservation(reservation.id);
-}
-```
-
----
 
 ## 📁 Struktur Project
 
 ```
-Integrasi-Tailore-Service/
-├── server.js           # Express server
+Tailore_Service/
+├── server.js           # Main server file
 ├── package.json        # Dependencies
-├── vercel.json         # Deployment config
-├── README.md           # Documentation
+├── .gitignore          # Git ignore rules
+├── README.md           # Dokumentasi ini
 └── public/
-    └── index.html      # Frontend SPA
+    └── index.html      # Frontend application
 ```
-
----
 
 ## 🛠️ Development
 
 ### Port Configuration
-Default: **3000**  
-Change via environment:
+Default port: **5000**  
+Dapat diubah melalui environment variable:
 ```bash
-PORT=5000 npm start
+PORT=3000 npm start
 ```
 
-### Tech Stack
-- **Frontend**: HTML5, CSS3, Vanilla JS
-- **Backend**: Node.js, Express (static server)
-- **APIs**: RESTful with JWT
-- **Deployment**: Vercel
-
----
+### Logging
+Service menggunakan console logging untuk tracking:
+- 🛒 Checkout requests
+- 🔒 Stock reservations
+- 💾 Order creations
+- ✅ Stock commits
+- ❌ Errors
 
 ## 🐛 Troubleshooting
 
-**"Harap login dulu!"**
-- Token invalid/expired
-- Login ulang
+### Error: "Harap login dulu!"
+- Pastikan token authentication valid
+- Token harus dikirim di header `Authorization: Bearer <token>`
 
-**"Keranjang kosong!"**
-- Cart kosong di localStorage
-- Add products dulu
+### Error: "Keranjang kosong!"
+- Pastikan items array tidak kosong
+- Minimal 1 item di cart
 
-**Stock reservation failed**
-- Product out of stock
-- Catalog service down
+### Error: Stock reservation failed
+- Cek apakah Catalog Service (Ooga) online
+- Pastikan product_id valid
+- Cek ketersediaan stock
 
-**Order creation failed**
-- Order service down
-- Secret key salah
-
----
-
-## 🌐 Deployment (Point D)
-
-**Live URL**: [https://tailore-service.vercel.app](https://tailore-service.vercel.app)
-
-```bash
-# Deploy ke Vercel
-vercel --prod
-```
-
-**Source Code**: [GitHub Repository]  
-**Video Demo**: [YouTube Link - Coming Soon]
-
----
+### Error: Order creation failed
+- Cek apakah Order Service (Cimol) online
+- Pastikan secret key valid
 
 ## 👥 Team
 
 **Tailoré E-Commerce Project**  
-Service-Oriented Architecture - 2026
-
-**Integration Service by**: Florecita Natawirya  
-**Catalog Service by**: [Nama Anggota 2]  
-**Order Service by**: [Nama Anggota 3]
-
----
-
-## 📝 Kesimpulan
-
-Proyek ini berhasil mengintegrasikan Catalog & Order service dengan:
-- ✅ 2-Phase Commit untuk data consistency
-- ✅ JWT authentication & role-based access
-- ✅ Client-side cart dengan localStorage
-- ✅ Responsive UI dengan modern design
-- ✅ Production deployment
-
-**Future Work**: WebSocket notifications, payment gateway, mobile app.
-
----
-
-**Last Updated**: January 7, 2026  
-**Version**: 1.0.0
+Integration Service by: Florecita Natawirya
