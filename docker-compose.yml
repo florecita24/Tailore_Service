@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  tailore-service-flori:
+    build: .
+    container_name: tailore-integration-flori
+    ports:
+      - "5001:5001"
+    environment:
+      - NODE_ENV=production
+      - PORT=5001
+    restart: unless-stopped

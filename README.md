@@ -22,7 +22,7 @@ Service ini berfungsi sebagai **middleware/orchestrator** yang:
        ▼
 ┌─────────────────────────┐
 │  Integration Service    │ ◄─── Service ini
-│  (Port 5000)            │
+│  (Port 5001)            │
 └───┬─────────────┬───────┘
     │             │
     │             │ HTTPS
@@ -75,7 +75,7 @@ npm install
 npm start
 ```
 
-Service akan berjalan di **http://localhost:5000**
+Service akan berjalan di **http://localhost:5001**
 
 ## 📡 API Endpoints
 
@@ -191,7 +191,7 @@ Tailore_Service/
 ## 🛠️ Development
 
 ### Port Configuration
-Default port: **5000**  
+Default port: **5001**  
 Dapat diubah melalui environment variable:
 ```bash
 PORT=3000 npm start
