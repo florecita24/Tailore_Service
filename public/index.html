@@ -3,33 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailoré | Official Store</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Tailoré | Not Just Style, A Signature</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
-        /* --- BLACK PINK WHITE PALETTE --- */
+        /* --- CASSIUS-STYLE CHERRY, GREEN, BLUSH PALETTE --- */
         :root {
-            --hitam: #000000;
+            /* Core brand colors */
+            --tyrian: #9B1C2C; /* Cherry red */
+            --citron: #0F5C3E; /* Forest green */
+
+            /* Neutrals and surfaces */
+            --cream: #FBF5EF; /* Soft cream background */
+            --beige: #E9D9CF; /* Warm border */
             --putih: #ffffff;
-            --pink-neon: #ff477e;
-            --pink-soft: #ffeef2;
-            --abu: #f4f4f4;
-            --pink-dark: #cc0033;
+            --dark-text: #3B2822; /* Cocoa brown text */
+            --light-text: #8C756B;
+
+            /* Extra tokens used elsewhere in the page */
+            --hitam: #1B1B1B;
+            --pink-soft: #FCE7EC; /* Blush backdrop */
+            --pink-neon: #E04C67; /* Accent pink */
+            --yellow: #F0D27A;
+            --abu: #F4F2F0;
+            --gradient-3: linear-gradient(135deg, #E04C67, #9B1C2C);
+            --gradient-5: linear-gradient(135deg, #F7C6D0, #FDE7EF);
         }
 
         /* RESET */
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--abu); color: var(--hitam); line-height: 1.6; }
+        body { 
+            background: var(--cream);
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(155, 28, 44, 0.02) 35px, rgba(155, 28, 44, 0.02) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(15, 92, 62, 0.02) 35px, rgba(15, 92, 62, 0.02) 70px);
+            color: var(--dark-text); 
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+        }
 
         /* HEADER */
         header { 
-            background: var(--hitam); 
-            color: var(--putih); 
+            background: var(--pink-soft);
+            color: var(--dark-text); 
             padding: 1.5rem 0; 
-            border-bottom: 4px solid var(--pink-neon);
+            border-bottom: 3px solid var(--tyrian);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         
         .header-container {
@@ -42,12 +64,16 @@
         }
 
         header h1 { 
-            font-weight: 800; 
-            letter-spacing: 3px; 
-            text-transform: uppercase; 
-            font-size: 2rem; 
+            font-family: 'Great Vibes', 'Cormorant Garamond', serif;
+            font-weight: 600; 
+            letter-spacing: 1px; 
+            text-transform: none; 
+            font-size: 2.6rem;
+            color: var(--tyrian);
         }
-        header span { color: var(--pink-neon); }
+        header span { 
+            color: var(--tyrian);
+        }
 
         .auth-section {
             display: flex;
@@ -56,91 +82,122 @@
         }
 
         .user-info {
-            color: var(--pink-neon);
-            font-weight: 600;
-            font-size: 0.9rem;
+            color: var(--light-text);
+            font-weight: 500;
+            font-size: 0.85rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn-header {
-            padding: 0.5rem 1.5rem;
-            background: var(--pink-neon);
+            padding: 0.65rem 2rem;
+            background: var(--citron);
             color: var(--putih);
-            border: none;
-            font-weight: 800;
+            border: 2px solid var(--citron);
+            font-weight: 500;
             cursor: pointer;
             text-transform: uppercase;
             font-size: 0.8rem;
-            letter-spacing: 1px;
-            transition: 0.2s;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            border-radius: 25px;
+            box-shadow: 0 3px 10px rgba(15, 92, 62, 0.3);
         }
 
         .btn-header:hover {
-            background: var(--pink-dark);
+            background: var(--tyrian);
+            color: var(--putih);
+            border-color: var(--tyrian);
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(155, 28, 44, 0.4);
         }
 
         /* CONTAINER */
         .container { 
             max-width: 1400px; 
             margin: 0 auto; 
-            padding: 2rem; 
+            padding: 2rem;
         }
 
         /* TABS */
         .tabs {
             display: flex;
-            gap: 0;
-            margin-bottom: 2rem;
-            border: 2px solid var(--hitam);
+            gap: 1rem;
+            margin-bottom: 3rem;
             width: fit-content;
+            background: var(--putih);
+            padding: 0.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(155, 28, 44, 0.1);
         }
 
         .tab {
-            padding: 1rem 2rem;
-            background: var(--putih);
-            color: var(--hitam);
+            padding: 0.8rem 2.5rem;
+            background: transparent;
+            color: var(--light-text);
             border: none;
-            border-right: 2px solid var(--hitam);
-            font-weight: 800;
+            font-weight: 500;
             cursor: pointer;
             text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            transition: 0.2s;
-        }
-
-        .tab:last-child {
-            border-right: none;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            border-radius: 30px;
+            position: relative;
+            white-space: nowrap;
         }
 
         .tab.active {
-            background: var(--hitam);
-            color: var(--pink-neon);
+            background: var(--tyrian);
+            color: var(--putih);
+            box-shadow: 0 4px 15px rgba(155, 28, 44, 0.3);
         }
 
         .tab:hover:not(.active) {
             background: var(--pink-soft);
+            color: var(--tyrian);
         }
 
         /* CARD */
         .card { 
-            background: var(--putih); 
-            border: 2px solid var(--hitam); 
-            padding: 2rem; 
-            box-shadow: 8px 8px 0px var(--hitam); 
-            margin-bottom: 2rem; 
+            background: var(--putih);
+            border: 1px solid var(--beige);
+            padding: 3rem; 
+            box-shadow: 0 10px 40px rgba(155, 28, 44, 0.1), 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(155, 28, 44, 0.03) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .card:hover {
+            box-shadow: 0 15px 50px rgba(155, 28, 44, 0.15), 0 8px 20px rgba(0,0,0,0.08);
+            transform: translateY(-3px);
         }
 
         .card h3 { 
-            font-size: 1.5rem; 
-            margin-bottom: 1.5rem; 
-            color: var(--hitam); 
-            border-bottom: 2px solid var(--hitam); 
-            padding-bottom: 0.5rem; 
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem; 
+            margin-bottom: 2rem; 
+            color: var(--tyrian);
+            border-bottom: 1px solid var(--beige);
+            padding-bottom: 0.8rem; 
             text-transform: uppercase; 
-            font-weight: 800; 
+            font-weight: 600;
+            letter-spacing: 2px;
         }
+        
 
         /* SEARCH & FILTERS */
         .search-section {
@@ -153,27 +210,34 @@
         .form-group { margin-bottom: 1.2rem; }
         label { 
             display: block; 
-            margin-bottom: 0.5rem; 
-            font-weight: 600; 
+            margin-bottom: 0.6rem; 
+            font-weight: 500; 
             font-size: 0.8rem;
+            color: var(--light-text);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         input, select { 
             width: 100%; 
-            padding: 1rem; 
-            border: 2px solid var(--hitam); 
-            background: var(--putih); 
-            font-size: 1rem; 
-            font-weight: 600; 
-            transition: 0.2s; 
+            padding: 0.9rem 1rem;
+            border: 2px solid var(--beige);
+            background: var(--cream);
+            font-size: 0.95rem; 
+            font-weight: 400;
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            color: var(--dark-text);
+        }
+
+        input::placeholder {
+            color: var(--light-text);
         }
 
         input:focus, select:focus { 
             outline: none; 
-            border-color: var(--pink-neon); 
-            background: var(--pink-soft); 
+            border-color: var(--tyrian);
+            background: var(--putih);
         }
 
         /* PRODUCTS GRID */
@@ -182,31 +246,56 @@
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
             margin-bottom: 2rem;
+            align-items: stretch;
         }
 
         .product-card {
             background: var(--putih);
-            border: 2px solid var(--hitam);
-            box-shadow: 6px 6px 0px var(--hitam);
-            transition: 0.2s;
+            border: 2px solid var(--beige);
+            box-shadow: 0 5px 20px rgba(155, 28, 44, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow: hidden;
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .product-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--tyrian), var(--citron));
         }
 
         .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 8px 8px 0px var(--hitam);
+            transform: translateY(-10px) rotate(-1deg);
+            box-shadow: 0 15px 40px rgba(155, 28, 44, 0.2), 0 5px 15px rgba(15, 92, 62, 0.1);
+            border-color: var(--tyrian);
         }
 
         .product-image {
             width: 100%;
-            height: 280px;
-            background: var(--abu);
+            height: 300px;
+            background: linear-gradient(135deg, var(--pink-soft) 0%, var(--beige) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 2px solid var(--hitam);
             overflow: hidden;
             position: relative;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .product-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(155, 28, 44, 0.1) 100%);
+            z-index: 1;
         }
 
         .product-image img {
@@ -214,52 +303,66 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
         }
 
         .stock-badge {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--pink-neon);
+            top: 15px;
+            right: 15px;
+            background: var(--tyrian);
             color: var(--putih);
-            padding: 5px 12px;
+            padding: 6px 14px;
             font-size: 0.65rem;
-            font-weight: 900;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 2px solid var(--hitam);
-            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.4);
+            letter-spacing: 1.5px;
+            border: none;
+            border-radius: 0;
         }
 
         .out-of-stock-badge {
-            background: var(--hitam);
+            background: var(--dark-text);
         }
 
         .low-stock {
-            background: #ff9500;
+            background: var(--citron);
+            color: var(--dark-text);
         }
 
         .product-info {
             padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
         .product-brand {
             font-size: 0.7rem;
-            color: var(--pink-neon);
-            font-weight: 800;
+            color: var(--light-text);
+            font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 0.5rem;
         }
 
         .product-name {
-            font-size: 1rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-            color: var(--hitam);
-            text-transform: uppercase;
-            line-height: 1.3;
-            min-height: 2.6rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--tyrian);
+            line-height: 1.4;
+            min-height: 2.8rem;
+        }
+        
+        .product-info > button,
+        .product-info > div:last-child {
+            margin-top: auto;
         }
 
         .product-meta {
@@ -270,95 +373,124 @@
         }
 
         .badge {
-            padding: 3px 8px;
+            padding: 4px 10px;
             font-size: 0.65rem;
-            background: var(--hitam);
-            color: var(--putih);
-            font-weight: 800;
+            background: #F8E1E8;
+            color: var(--dark-text);
+            font-weight: 500;
             text-transform: uppercase;
+            border-radius: 0;
+            letter-spacing: 1px;
         }
 
-        .badge.stock-low { background: var(--pink-neon); }
-        .badge.stock-out { background: var(--hitam); color: var(--pink-neon); }
+        .badge.stock-low { 
+            background: var(--gradient-5);
+            box-shadow: 0 2px 10px rgba(250, 112, 154, 0.4);
+        }
+        .badge.stock-out { 
+            background: var(--dark-text);
+            color: var(--putih);
+        }
 
         .product-price {
+            font-family: 'Cormorant Garamond', serif;
             font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--hitam);
+            font-weight: 600;
+            color: var(--tyrian);
             margin-bottom: 0.5rem;
         }
 
         .product-stock {
             font-size: 0.8rem;
-            color: var(--hitam);
-            font-weight: 600;
+            color: var(--light-text);
+            font-weight: 500;
             margin-bottom: 1rem;
         }
 
-        .stock-available { color: #00aa00; }
-        .stock-low { color: var(--pink-neon); }
-        .stock-out { color: var(--hitam); }
+        .stock-available { 
+            color: var(--citron);
+        }
+        .stock-low { 
+            color: var(--light-text);
+        }
+        .stock-out { 
+            color: var(--tyrian);
+        }
 
         /* BUTTONS */
         button { 
             width: 100%; 
             padding: 1rem; 
-            background: var(--hitam); 
+            background: var(--tyrian);
             color: var(--putih); 
-            border: none; 
-            font-size: 0.9rem; 
-            font-weight: 800; 
+            border: 2px solid var(--tyrian); 
+            font-size: 0.8rem; 
+            font-weight: 600; 
             cursor: pointer; 
             text-transform: uppercase; 
             letter-spacing: 2px; 
-            transition: 0.2s; 
+            transition: all 0.3s ease;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(155, 28, 44, 0.3);
         }
 
         button:hover { 
-            background: var(--pink-neon); 
+            background: var(--citron);
+            border-color: var(--citron);
+            color: var(--putih);
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(15, 92, 62, 0.4);
         }
 
         button:disabled {
-            background: #ccc;
+            background: var(--beige);
+            border-color: var(--beige);
+            color: var(--light-text);
             cursor: not-allowed;
-            transform: none;
+            box-shadow: none;
         }
 
-        .btn-secondary {
+        .btn-secondary { 
             background: var(--putih);
-            color: var(--hitam);
-            border: 2px solid var(--hitam);
+            color: var(--dark-text);
+            border: 1px solid var(--beige);
+            backdrop-filter: none;
         }
 
         .btn-secondary:hover {
-            background: var(--pink-soft);
+            background: var(--beige);
+            border-color: var(--beige);
         }
 
         .btn-refresh { 
-            background: var(--putih); 
-            color: var(--hitam); 
-            border: 2px solid var(--hitam); 
+            background: var(--citron);
+            color: var(--putih);
+            border: 2px solid var(--citron); 
             width: auto; 
-            padding: 0.5rem 1.5rem; 
-            font-size: 0.8rem; 
-            box-shadow: 4px 4px 0 var(--hitam); 
+            padding: 0.7rem 1.8rem; 
+            font-size: 0.85rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(15, 92, 62, 0.3);
+            border-radius: 25px;
             position: relative;
             top: 0;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
         }
         
         .btn-refresh:hover { 
-            background: var(--pink-neon); 
+            background: var(--tyrian);
             color: var(--putih); 
-            box-shadow: 2px 2px 0 var(--hitam); 
-            top: 2px; 
+            border-color: var(--tyrian);
+            box-shadow: 0 6px 20px rgba(155, 28, 44, 0.4);
+            transform: translateY(-2px);
         }
 
         /* TABLE */
         .table-responsive { 
-            overflow-x: auto; 
-            border: 2px solid var(--hitam); 
+            overflow-x: auto;
+            border: 1px solid var(--beige);
+            border-radius: 0;
+            background: var(--putih);
         }
 
         table { 
@@ -368,24 +500,30 @@
         }
 
         th { 
-            background: var(--hitam); 
-            color: var(--putih); 
+            background: var(--beige);
+            color: var(--tyrian); 
             padding: 1rem; 
             text-align: left; 
             text-transform: uppercase; 
-            font-size: 0.75rem; 
-            letter-spacing: 1px; 
+            font-size: 0.7rem; 
+            letter-spacing: 2px;
+            font-weight: 600;
         }
 
         td { 
             padding: 1rem; 
-            border-bottom: 1px solid #ddd; 
-            background: var(--putih); 
-            font-weight: 600; 
+            border-bottom: 1px solid var(--beige);
+            background: var(--putih);
+            font-weight: 400;
+            color: var(--dark-text);
         }
 
         tr:nth-child(even) td { 
-            background: var(--pink-soft); 
+            background: rgba(202, 209, 131, 0.05);
+        }
+
+        tr:hover td {
+            background: rgba(202, 209, 131, 0.15);
         }
 
         /* PAGINATION */
@@ -395,11 +533,7 @@
             justify-content: center;
             align-items: center;
             gap: 0.5rem;
-            margin: 3rem 0;
-            padding: 1.5rem;
-            background: var(--putih);
-            border: 3px solid var(--hitam);
-            box-shadow: 6px 6px 0px var(--hitam);
+            margin: 3rem 0 2rem;
         }
 
         .pagination button {
@@ -407,28 +541,38 @@
             min-width: 50px;
             padding: 0.8rem 1.2rem;
             font-size: 0.85rem;
-            font-weight: 900;
+            font-weight: 600;
             background: var(--putih);
-            border: 2px solid var(--hitam);
-            box-shadow: 4px 4px 0px var(--hitam);
-            transition: all 0.2s;
+            border: 2px solid var(--dark-text);
+            transition: all 0.3s ease;
+            border-radius: 0;
+            color: var(--dark-text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .pagination button:hover {
+        .pagination button:hover:not(.active):not(:disabled) {
             background: var(--pink-soft);
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px var(--hitam);
+            border-color: var(--tyrian);
+            color: var(--tyrian);
         }
 
         .pagination button.active {
-            background: var(--pink-neon);
+            background: var(--tyrian);
             color: var(--putih);
-            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+            border-color: var(--tyrian);
         }
 
         .pagination button:disabled {
             opacity: 0.5;
             cursor: not-allowed;
+            background: var(--beige);
+            border-color: var(--beige);
+            color: var(--light-text);
         }
 
         /* MODAL */
@@ -439,7 +583,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 9999;
             align-items: center;
             justify-content: center;
@@ -451,47 +595,89 @@
 
         .modal-content {
             background: var(--putih);
-            border: 4px solid var(--hitam);
-            box-shadow: 12px 12px 0px var(--hitam);
-            max-width: 900px;
+            border: 3px solid var(--tyrian);
+            box-shadow: 0 20px 80px rgba(155, 28, 44, 0.3), 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 1000px;
             width: 90%;
             max-height: 90vh;
-            overflow-y: auto;
-            padding: 2rem;
+            overflow: hidden;
+            padding: 0;
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--hitam);
-            padding-bottom: 1rem;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, var(--pink-soft) 0%, var(--cream) 100%);
+            border-bottom: 3px solid var(--tyrian);
+            position: relative;
+            flex-shrink: 0;
+        }
+        
+        .modal-body {
+            overflow-y: auto;
+            padding: 2rem;
+            flex: 1;
+        }
+        
+        .modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .modal-body::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+        
+        .modal-body::-webkit-scrollbar-thumb {
+            background: var(--tyrian);
+            border-radius: 4px;
+        }
+        
+        .modal-body::-webkit-scrollbar-thumb:hover {
+            background: var(--citron);
+        }
+        
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 30%;
+            height: 3px;
+            background: var(--citron);
         }
 
         .modal-header h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
             text-transform: uppercase;
             margin: 0;
             border: none;
             padding: 0;
+            color: var(--tyrian);
+            letter-spacing: 2px;
         }
 
         .close-btn {
-            background: var(--hitam);
-            color: var(--putih);
+            background: transparent;
+            color: var(--tyrian);
             border: none;
             width: 40px;
             height: 40px;
             font-size: 1.5rem;
             cursor: pointer;
-            font-weight: 800;
+            font-weight: 400;
             padding: 0;
+            transition: all 0.3s ease;
         }
 
         .close-btn:hover {
-            background: var(--pink-neon);
+            transform: rotate(90deg);
         }
 
         /* QUANTITY SELECTOR */
@@ -502,77 +688,100 @@
             gap: 1rem;
             margin: 0 auto 1.5rem;
             width: fit-content;
+            position: relative;
         }
 
         .quantity-selector button {
-            background: var(--hitam);
+            background: var(--tyrian);
             color: var(--putih);
             border: none;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
-            font-weight: 800;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: 0.2s;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            box-shadow: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .quantity-selector button:hover {
-            background: var(--pink-neon);
-            transform: scale(1.1);
+            background: var(--citron);
+            transform: scale(1.15);
         }
 
         .quantity-selector button:disabled {
-            background: #ccc;
+            background: var(--beige);
+            color: var(--light-text);
             cursor: not-allowed;
             transform: none;
         }
 
         .quantity-selector input {
-            width: 80px;
+            width: 60px;
+            height: 40px;
             text-align: center;
-            font-size: 1.5rem;
-            font-weight: 800;
-            border: 3px solid var(--hitam);
-            padding: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: 2px solid var(--tyrian);
+            padding: 0;
             background: var(--putih);
+            border-radius: 20px;
+            color: var(--tyrian);
+            margin: 0 0.5rem;
         }
 
         .btn-checkout {
             width: 100%;
-            padding: 1.5rem;
-            background: var(--pink-neon);
+            padding: 1.2rem;
+            background: var(--tyrian);
             color: var(--putih);
-            border: 3px solid var(--hitam);
-            font-size: 1.2rem;
-            font-weight: 800;
+            border: 2px solid var(--tyrian);
+            font-size: 0.9rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
             cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 6px 6px 0 var(--hitam);
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(155, 28, 44, 0.3);
         }
 
         .btn-checkout:hover {
-            background: var(--pink-dark);
-            transform: translate(-2px, -2px);
-            box-shadow: 8px 8px 0 var(--hitam);
+            background: var(--citron);
+            border-color: var(--citron);
+            color: var(--putih);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(15, 92, 62, 0.4);
         }
 
         .btn-checkout:disabled {
-            background: #ccc;
+            background: var(--beige);
+            border-color: var(--beige);
+            color: var(--light-text);
             cursor: not-allowed;
             transform: none;
+            box-shadow: none;
         }
 
         /* LOADING */
         .loading {
             text-align: center;
             padding: 4rem;
-            font-weight: 800;
-            font-size: 1.2rem;
+            font-weight: 500;
+            font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--hitam);
+            letter-spacing: 3px;
+            color: var(--tyrian);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
         }
 
         .loading::after {
@@ -588,34 +797,41 @@
 
         /* ALERT */
         .alert {
-            padding: 1rem;
+            padding: 1.2rem 1.5rem;
             margin-bottom: 1rem;
-            border: 2px solid var(--hitam);
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.9rem;
+            border: 1px solid;
+            font-weight: 500;
+            font-size: 0.85rem;
             position: fixed;
             top: 100px;
             right: 2rem;
             z-index: 99999;
             max-width: 400px;
             min-width: 300px;
-            box-shadow: 6px 6px 0 var(--hitam);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 0;
+            background: var(--putih);
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(500px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
         .alert-success {
-            background: #e8ffe8;
-            color: #00aa00;
+            color: var(--citron);
+            border-color: var(--citron);
         }
 
         .alert-error {
-            background: var(--pink-soft);
-            color: var(--pink-dark);
+            color: var(--tyrian);
+            border-color: var(--tyrian);
         }
 
         .alert-info {
-            background: var(--pink-soft);
-            color: var(--hitam);
+            color: var(--dark-text);
+            border-color: var(--dark-text);
         }
 
         /* STATS */
@@ -627,36 +843,51 @@
         }
 
         .stat-card {
-            background: var(--hitam);
-            color: var(--putih);
-            padding: 1.5rem;
-            border: 2px solid var(--hitam);
-            box-shadow: 6px 6px 0px var(--hitam);
+            background: var(--putih);
+            color: var(--dark-text);
+            padding: 2rem;
+            border: 1px solid var(--beige);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 0;
+            position: relative;
+            border-top: 3px solid var(--tyrian);
         }
 
         .stat-label {
-            font-size: 0.8rem;
-            color: var(--pink-neon);
+            font-size: 0.75rem;
+            color: var(--light-text);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
         }
 
         .stat-value {
-            font-size: 2rem;
-            font-weight: 800;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--tyrian);
         }
 
         /* STATUS BADGE */
         .status-badge {
-            background: #000000;
-            color: #ff477e;
-            padding: 5px 10px;
+            background: var(--citron);
+            color: var(--putih);
+            padding: 5px 12px;
             font-size: 0.7rem;
             text-transform: uppercase;
-            font-weight: bold;
-            border: 1px solid #ff477e;
+            font-weight: 600;
+            border: none;
             display: inline-block;
+            border-radius: 0;
+            letter-spacing: 1px;
+        }
+
+        /* Override inline debug styles on pagination container */
+        #pagination {
+            background: transparent !important;
+            border: none !important;
+            min-height: 0 !important;
         }
 
         /* RESPONSIVE */
@@ -689,40 +920,41 @@
             position: fixed;
             bottom: 2rem;
             right: 2rem;
-            background: var(--pink-neon);
+            background: var(--tyrian);
             color: var(--putih);
-            width: 70px;
-            height: 70px;
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            box-shadow: 6px 6px 0 var(--hitam);
-            border: 3px solid var(--hitam);
+            font-size: 1.8rem;
+            box-shadow: 0 4px 20px rgba(102, 2, 60, 0.3);
+            border: none;
             cursor: pointer;
             z-index: 999;
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
         }
 
         .floating-cart-btn:hover {
-            transform: scale(1.1);
+            transform: scale(1.08);
+            box-shadow: 0 6px 30px rgba(102, 2, 60, 0.5);
         }
 
         .cart-badge {
             position: absolute;
             top: -5px;
             right: -5px;
-            background: var(--hitam);
-            color: var(--putih);
-            width: 30px;
-            height: 30px;
+            background: var(--citron);
+            color: var(--dark-text);
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 800;
+            font-weight: 700;
             border: 2px solid var(--putih);
         }
 
@@ -734,11 +966,14 @@
         /* FOOTER */
         footer { 
             text-align: center; 
-            padding: 2rem; 
-            color: var(--hitam); 
-            font-weight: 600; 
-            font-size: 0.8rem; 
-            opacity: 0.6; 
+            padding: 3rem 2rem; 
+            color: var(--light-text);
+            font-weight: 400; 
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            background: var(--putih);
+            margin-top: 4rem;
+            border-top: 1px solid var(--beige);
         }
     </style>
 </head>
@@ -817,8 +1052,7 @@
             </div>
 
             <!-- PAGINATION - ALWAYS VISIBLE CONTAINER -->
-            <div class="pagination" id="pagination" style="display: flex !important; min-height: 100px; background: yellow; border: 5px solid red;">
-                <p style="color: black; font-weight: 900;">PAGINATION CONTAINER HERE</p>
+            <div class="pagination" id="pagination">
             </div>
         </div>
 
@@ -871,39 +1105,39 @@
                 </div>
 
                 <!-- ORDER SUMMARY -->
-                <div style="background: var(--pink-soft); border: 3px solid var(--hitam); padding: 1.5rem; margin-bottom: 2rem; box-shadow: 6px 6px 0 var(--hitam);">
-                    <h4 style="font-weight: 800; margin-bottom: 1rem; text-transform: uppercase; border-bottom: 2px solid var(--hitam); padding-bottom: 0.5rem;">ORDER SUMMARY</h4>
+                <div style="background: var(--pink-soft); border: 2px solid var(--tyrian); padding: 2rem; margin-bottom: 2rem; box-shadow: 0 5px 20px rgba(155, 28, 44, 0.1); border-radius: 20px;">
+                    <h4 style="font-weight: 700; margin-bottom: 1.5rem; text-transform: uppercase; border-bottom: 2px solid var(--tyrian); padding-bottom: 0.8rem; color: var(--tyrian); font-size: 0.9rem; letter-spacing: 2px;">ORDER SUMMARY</h4>
                     <div id="checkoutOrderSummary"></div>
-                    <div style="border-top: 2px solid var(--hitam); margin-top: 1rem; padding-top: 1rem;">
-                        <div style="display: flex; justify-content: space-between; font-weight: 800; font-size: 1.3rem;">
-                            <span>TOTAL:</span>
-                            <span id="checkoutTotal" style="color: var(--pink-neon);">USD 0</span>
+                    <div style="border-top: 2px solid var(--tyrian); margin-top: 1.5rem; padding-top: 1.5rem;">
+                        <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.3rem;">
+                            <span style="color: var(--dark-text);">TOTAL:</span>
+                            <span id="checkoutTotal" style="color: var(--tyrian);">USD 0</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- CUSTOMER INFORMATION -->
-                <div style="background: var(--putih); border: 3px solid var(--hitam); padding: 1.5rem; margin-bottom: 2rem; box-shadow: 6px 6px 0 var(--hitam);">
-                    <h4 style="font-weight: 800; margin-bottom: 1rem; text-transform: uppercase; border-bottom: 2px solid var(--hitam); padding-bottom: 0.5rem;">CUSTOMER INFORMATION</h4>
+                <div style="background: var(--putih); border: 2px solid var(--beige); padding: 2rem; margin-bottom: 2rem; box-shadow: 0 5px 20px rgba(155, 28, 44, 0.08); border-radius: 20px;">
+                    <h4 style="font-weight: 700; margin-bottom: 1.5rem; text-transform: uppercase; border-bottom: 2px solid var(--tyrian); padding-bottom: 0.8rem; color: var(--tyrian); font-size: 0.9rem; letter-spacing: 2px;">CUSTOMER INFORMATION</h4>
                     
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">CUSTOMER NAME</label>
-                        <input type="text" id="checkoutCustomerName" readonly style="width: 100%; padding: 0.8rem; border: 2px solid var(--hitam); background: var(--abu); font-weight: 600;">
+                    <div style="margin-bottom: 1.2rem;">
+                        <label style="display: block; margin-bottom: 0.6rem; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; color: var(--light-text); letter-spacing: 1.5px;">CUSTOMER NAME</label>
+                        <input type="text" id="checkoutCustomerName" readonly style="width: 100%; padding: 0.9rem 1rem; border: 2px solid var(--beige); background: var(--cream); font-weight: 500; border-radius: 12px;">
                     </div>
 
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">PHONE NUMBER</label>
-                        <input type="tel" id="checkoutPhone" placeholder="ENTER YOUR PHONE NUMBER" style="width: 100%; padding: 0.8rem; border: 2px solid var(--hitam); font-weight: 600;">
+                    <div style="margin-bottom: 1.2rem;">
+                        <label style="display: block; margin-bottom: 0.6rem; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; color: var(--light-text); letter-spacing: 1.5px;">PHONE NUMBER</label>
+                        <input type="tel" id="checkoutPhone" placeholder="ENTER YOUR PHONE NUMBER" style="width: 100%; padding: 0.9rem 1rem; border: 2px solid var(--beige); background: var(--cream); font-weight: 500; border-radius: 12px;">
                     </div>
 
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">DELIVERY ADDRESS</label>
-                        <textarea id="checkoutAddress" placeholder="ENTER YOUR FULL ADDRESS" rows="3" style="width: 100%; padding: 0.8rem; border: 2px solid var(--hitam); font-weight: 600; font-family: 'Inter', sans-serif; resize: vertical;"></textarea>
+                    <div style="margin-bottom: 1.2rem;">
+                        <label style="display: block; margin-bottom: 0.6rem; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; color: var(--light-text); letter-spacing: 1.5px;">DELIVERY ADDRESS</label>
+                        <textarea id="checkoutAddress" placeholder="ENTER YOUR FULL ADDRESS" rows="3" style="width: 100%; padding: 0.9rem 1rem; border: 2px solid var(--beige); background: var(--cream); font-weight: 500; font-family: 'Inter', sans-serif; resize: vertical; border-radius: 12px;"></textarea>
                     </div>
 
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">PAYMENT METHOD</label>
-                        <select id="checkoutPayment" style="width: 100%; padding: 0.8rem; border: 2px solid var(--hitam); font-weight: 600; background: var(--putih);">
+                    <div style="margin-bottom: 1.2rem;">
+                        <label style="display: block; margin-bottom: 0.6rem; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; color: var(--light-text); letter-spacing: 1.5px;">PAYMENT METHOD</label>
+                        <select id="checkoutPayment" style="width: 100%; padding: 0.9rem 1rem; border: 2px solid var(--beige); background: var(--cream); font-weight: 500; border-radius: 12px;">
                             <option value="credit_card">CREDIT CARD</option>
                             <option value="bank_transfer">BANK TRANSFER</option>
                             <option value="e_wallet">E-WALLET</option>
@@ -911,9 +1145,9 @@
                         </select>
                     </div>
 
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">ORDER NOTES (OPTIONAL)</label>
-                        <textarea id="checkoutNotes" placeholder="ADD ANY SPECIAL INSTRUCTIONS" rows="2" style="width: 100%; padding: 0.8rem; border: 2px solid var(--hitam); font-weight: 600; font-family: 'Inter', sans-serif; resize: vertical;"></textarea>
+                    <div style="margin-bottom: 1.2rem;">
+                        <label style="display: block; margin-bottom: 0.6rem; font-weight: 600; font-size: 0.8rem; text-transform: uppercase; color: var(--light-text); letter-spacing: 1.5px;">ORDER NOTES (OPTIONAL)</label>
+                        <textarea id="checkoutNotes" placeholder="ADD ANY SPECIAL INSTRUCTIONS" rows="2" style="width: 100%; padding: 0.9rem 1rem; border: 2px solid var(--beige); background: var(--cream); font-weight: 500; font-family: 'Inter', sans-serif; resize: vertical; border-radius: 12px;"></textarea>
                     </div>
                 </div>
 
@@ -985,52 +1219,70 @@
 
     <!-- LOGIN MODAL -->
     <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>LOGIN</h3>
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header" style="padding: 2rem 2.5rem;">
+                <h3 style="font-size: 2.2rem;">LOGIN</h3>
                 <button class="close-btn" onclick="closeModal('loginModal')">×</button>
             </div>
-            <div class="form-group">
-                <label>USERNAME</label>
-                <input type="text" id="loginUsername" placeholder="ENTER USERNAME">
+            <div class="modal-body" style="padding: 2.5rem;">
+                <div class="form-group" style="margin-bottom: 1.8rem;">
+                    <label style="font-size: 0.85rem; margin-bottom: 0.8rem;">USERNAME</label>
+                    <input type="text" id="loginUsername" placeholder="ENTER USERNAME" style="font-size: 1.05rem; padding: 1.2rem 1.5rem; border-radius: 15px; border: 2px solid var(--beige);">
+                </div>
+                <div class="form-group" style="margin-bottom: 1.8rem;">
+                    <label style="font-size: 0.85rem; margin-bottom: 0.8rem;">PASSWORD</label>
+                    <input type="password" id="loginPassword" placeholder="ENTER PASSWORD" style="font-size: 1.05rem; padding: 1.2rem 1.5rem; border-radius: 15px; border: 2px solid var(--beige);">
+                </div>
+                <button onclick="login()" style="margin-top: 1rem; padding: 1.3rem; font-size: 0.95rem; border-radius: 18px;">LOGIN NOW</button>
+                
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid var(--beige); text-align: center;">
+                    <p style="font-size: 0.9rem; color: var(--light-text); margin-bottom: 1rem; font-weight: 500;">
+                        DON'T HAVE AN ACCOUNT?
+                    </p>
+                    <a href="#" onclick="event.preventDefault(); closeModal('loginModal'); showRegisterModal();" style="color: var(--tyrian); font-weight: 700; text-decoration: none; font-size: 1rem; display: inline-block; padding: 0.8rem 2rem; background: var(--pink-soft); border-radius: 12px; transition: all 0.3s ease; border: 2px solid transparent;" onmouseover="this.style.background='var(--tyrian)'; this.style.color='var(--putih)'; this.style.borderColor='var(--tyrian)';" onmouseout="this.style.background='var(--pink-soft)'; this.style.color='var(--tyrian)'; this.style.borderColor='transparent';">REGISTER HERE</a>
+                </div>
+                
+                <div style="margin-top: 1.5rem; padding: 1.3rem 1.5rem; background: var(--cream); border-radius: 15px; border-left: 4px solid var(--citron);">
+                    <p style="font-size: 0.85rem; color: var(--light-text); margin: 0; line-height: 1.6;">
+                        <strong style="color: var(--citron); font-size: 0.9rem;">Demo Account:</strong><br>
+                        <span style="color: var(--dark-text); font-weight: 600;">admin / admin123</span>
+                    </p>
+                </div>
             </div>
-            <div class="form-group">
-                <label>PASSWORD</label>
-                <input type="password" id="loginPassword" placeholder="ENTER PASSWORD">
-            </div>
-            <button onclick="login()">LOGIN NOW</button>
-            <p style="margin-top: 1rem; text-align: center; font-size: 0.85rem;">
-                DON'T HAVE AN ACCOUNT? <a href="#" onclick="event.preventDefault(); closeModal('loginModal'); showRegisterModal();" style="color: var(--pink-neon); font-weight: 800; text-decoration: underline;">REGISTER HERE</a>
-            </p>
-            <p style="margin-top: 0.5rem; text-align: center; font-size: 0.8rem; opacity: 0.7;">
-                DEFAULT ADMIN: admin / admin123
-            </p>
         </div>
     </div>
 
     <!-- REGISTER MODAL -->
     <div class="modal" id="registerModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>CREATE ACCOUNT</h3>
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header" style="padding: 2rem 2.5rem;">
+                <h3 style="font-size: 2.2rem;">CREATE ACCOUNT</h3>
                 <button class="close-btn" onclick="closeModal('registerModal')">×</button>
             </div>
-            <div class="form-group">
-                <label>USERNAME</label>
-                <input type="text" id="registerUsername" placeholder="CHOOSE USERNAME">
+            <div class="modal-body" style="padding: 2.5rem;">
+                <div class="form-group" style="margin-bottom: 1.8rem;">
+                    <label style="font-size: 0.85rem; margin-bottom: 0.8rem;">USERNAME</label>
+                    <input type="text" id="registerUsername" placeholder="CHOOSE USERNAME" style="font-size: 1.05rem; padding: 1.2rem 1.5rem; border-radius: 15px; border: 2px solid var(--beige);">
+                    <small style="display: block; margin-top: 0.7rem; font-size: 0.8rem; color: var(--light-text); font-weight: 500;">Choose a unique username (min. 3 characters)</small>
+                </div>
+                <div class="form-group" style="margin-bottom: 1.8rem;">
+                    <label style="font-size: 0.85rem; margin-bottom: 0.8rem;">PASSWORD</label>
+                    <input type="password" id="registerPassword" placeholder="CHOOSE PASSWORD" style="font-size: 1.05rem; padding: 1.2rem 1.5rem; border-radius: 15px; border: 2px solid var(--beige);">
+                    <small style="display: block; margin-top: 0.7rem; font-size: 0.8rem; color: var(--light-text); font-weight: 500;">At least 6 characters required</small>
+                </div>
+                <div class="form-group" style="margin-bottom: 1.8rem;">
+                    <label style="font-size: 0.85rem; margin-bottom: 0.8rem;">CONFIRM PASSWORD</label>
+                    <input type="password" id="registerConfirmPassword" placeholder="CONFIRM PASSWORD" style="font-size: 1.05rem; padding: 1.2rem 1.5rem; border-radius: 15px; border: 2px solid var(--beige);">
+                </div>
+                <button onclick="register()" style="margin-top: 1rem; padding: 1.3rem; font-size: 0.95rem; border-radius: 18px;">CREATE ACCOUNT</button>
+                
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid var(--beige); text-align: center;">
+                    <p style="font-size: 0.9rem; color: var(--light-text); margin-bottom: 1rem; font-weight: 500;">
+                        ALREADY HAVE AN ACCOUNT?
+                    </p>
+                    <a href="#" onclick="event.preventDefault(); closeModal('registerModal'); showLoginModal();" style="color: var(--citron); font-weight: 700; text-decoration: none; font-size: 1rem; display: inline-block; padding: 0.8rem 2rem; background: var(--cream); border-radius: 12px; border: 2px solid var(--citron); transition: all 0.3s ease;" onmouseover="this.style.background='var(--citron)'; this.style.color='var(--putih)';" onmouseout="this.style.background='var(--cream)'; this.style.color='var(--citron)';">LOGIN HERE</a>
+                </div>
             </div>
-            <div class="form-group">
-                <label>PASSWORD</label>
-                <input type="password" id="registerPassword" placeholder="CHOOSE PASSWORD">
-            </div>
-            <div class="form-group">
-                <label>CONFIRM PASSWORD</label>
-                <input type="password" id="registerConfirmPassword" placeholder="CONFIRM PASSWORD">
-            </div>
-            <button onclick="register()">CREATE ACCOUNT</button>
-            <p style="margin-top: 1rem; text-align: center; font-size: 0.85rem;">
-                ALREADY HAVE AN ACCOUNT? <a href="#" onclick="event.preventDefault(); closeModal('registerModal'); showLoginModal();" style="color: var(--pink-neon); font-weight: 800; text-decoration: underline;">LOGIN HERE</a>
-            </p>
         </div>
     </div>
 
@@ -1041,7 +1293,7 @@
                 <h3>PRODUCT DETAILS</h3>
                 <button class="close-btn" onclick="closeModal('productModal')">×</button>
             </div>
-            <div id="productDetailContent"></div>
+            <div class="modal-body" id="productDetailContent"></div>
         </div>
     </div>
 
@@ -1052,7 +1304,7 @@
                 <h3>ADJUST STOCK</h3>
                 <button class="close-btn" onclick="closeModal('stockModal')">×</button>
             </div>
-            <div id="stockAdjustContent"></div>
+            <div class="modal-body" id="stockAdjustContent"></div>
         </div>
     </div>
 
@@ -1063,15 +1315,17 @@
                 <h3>SHOPPING CART</h3>
                 <button class="close-btn" onclick="closeModal('cartModal')">×</button>
             </div>
-            <div id="cartItems" style="margin: 1.5rem 0; max-height: 400px; overflow-y: auto;">
-                <p style="text-align:center; color:#999;">Cart is empty.</p>
-            </div>
-            <div style="border-top: 2px solid black; padding-top: 1rem;">
-                <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1.2rem; margin-bottom:1rem;">
-                    <span>TOTAL:</span>
-                    <span id="cartTotal">USD 0</span>
+            <div class="modal-body">
+                <div id="cartItems" style="margin-bottom: 1.5rem; max-height: 400px; overflow-y: auto;">
+                    <p style="text-align:center; color:#999;">Cart is empty.</p>
                 </div>
-                <button onclick="showCheckoutPage()" id="btnCheckout">PROCEED TO CHECKOUT</button>
+                <div style="border-top: 2px solid var(--tyrian); padding-top: 1rem;">
+                    <div style="display:flex; justify-content:space-between; font-weight:800; font-size:1.2rem; margin-bottom:1rem;">
+                        <span>TOTAL:</span>
+                        <span id="cartTotal">USD 0</span>
+                    </div>
+                    <button onclick="showCheckoutPage()" id="btnCheckout">PROCEED TO CHECKOUT</button>
+                </div>
             </div>
         </div>
     </div>
@@ -1461,8 +1715,6 @@
             }
             
             container.style.display = 'flex';
-            container.style.background = 'white';
-            container.style.border = '3px solid black';
 
             const { page, totalPages } = pagination;
             console.log(`Building pagination: page ${page} of ${totalPages}`);
@@ -1471,14 +1723,9 @@
             const createBtn = (text, pageNum, isActive = false) => {
                 const btn = document.createElement('button');
                 btn.textContent = text;
-                btn.style.minWidth = '50px';
-                btn.style.padding = '0.8rem 1.2rem';
-                btn.style.fontSize = '0.85rem';
-                btn.style.fontWeight = '900';
-                btn.style.background = isActive ? '#ff477e' : 'white';
-                btn.style.color = isActive ? 'white' : 'black';
-                btn.style.border = '2px solid black';
-                btn.style.cursor = 'pointer';
+                if (isActive) {
+                    btn.classList.add('active');
+                }
                 
                 if (pageNum) {
                     btn.onclick = () => { 
@@ -1511,8 +1758,8 @@
             info.style.textAlign = 'center';
             info.style.marginTop = '1rem';
             info.style.fontSize = '0.85rem';
-            info.style.fontWeight = '700';
-            info.style.color = 'black';
+            info.style.fontWeight = '600';
+            info.style.color = 'var(--dark-text)';
             info.textContent = `PAGE ${page} OF ${totalPages} (${pagination.total} PRODUCTS)`;
             container.appendChild(info);
             
@@ -1535,7 +1782,7 @@
             }
             
             return `
-                <div style="background: var(--pink-soft); padding: 1.5rem; border: 3px solid var(--hitam); box-shadow: 6px 6px 0 var(--hitam);">
+                <div style="background: var(--pink-soft); padding: 1.5rem; border-radius: 15px;">
                     <label style="display: block; text-align: center; margin-bottom: 1rem; font-weight: 800; font-size: 1.1rem;">QUANTITY</label>
                     <div class="quantity-selector">
                         <button onclick="decreaseQuantity()" type="button">-</button>
@@ -1581,49 +1828,77 @@
                     console.log('Product ID:', product.id);
                     
                     const stockStatus = getStockStatus(product.available_quantity);
-                    const imageUrl = product.image_url || 'https://via.placeholder.com/400x500?text=No+Image';
+                    const imageUrl = product.image_url || 'https://via.placeholder.com/600x800?text=No+Image';
                     
                     document.getElementById('productDetailContent').innerHTML = `
-                        <div style="display: flex; gap: 2rem;">
-                            <div style="flex: 0 0 300px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; height: 100%;">
+                            <!-- Left: Image Panel -->
+                            <div style="background: var(--cream); padding: 2rem; display: flex; align-items: flex-start; justify-content: center; position: relative; padding-top: 3rem;">
                                 <img src="${imageUrl}" alt="${product.name}" 
-                                     style="width: 100%; height: auto; border: 3px solid var(--hitam); box-shadow: 6px 6px 0 var(--hitam);"
-                                     onerror="this.src='https://via.placeholder.com/400x500?text=No+Image'">
+                                     style="max-width: 100%; max-height: 65vh; object-fit: contain; border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);"
+                                     onerror="this.src='https://via.placeholder.com/600x800?text=No+Image'">
                             </div>
-                            <div style="flex: 1;">
-                                <div class="product-brand" style="margin-bottom: 0.5rem;">${product.brand || 'UNKNOWN'}</div>
-                                <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; text-transform: uppercase;">${product.name}</h2>
+                            
+                            <!-- Right: Info Panel -->
+                            <div style="padding: 2rem;">
+                                <div class="product-brand" style="margin-bottom: 0.5rem; color: var(--citron); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;">${product.brand || 'UNKNOWN'}</div>
+                                <h2 style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; color: var(--tyrian); line-height: 1.2;">${product.name}</h2>
                                 
-                                <div style="margin-bottom: 1.5rem;">
-                                    <span class="badge">${product.category || 'N/A'}</span>
-                                    <span class="badge">${product.size || 'N/A'}</span>
-                                    <span class="badge">${product.color || 'N/A'}</span>
+                                <div style="margin-bottom: 1.2rem; display: flex; gap: 0.6rem; flex-wrap: wrap;">
+                                    <span style="background: var(--pink-soft); color: var(--tyrian); border: 2px solid var(--tyrian); padding: 5px 12px; border-radius: 15px; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">${product.category || 'N/A'}</span>
+                                    <span style="background: var(--cream); color: var(--citron); border: 2px solid var(--citron); padding: 5px 12px; border-radius: 15px; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">${product.size || 'N/A'}</span>
+                                    <span style="background: var(--beige); color: var(--tyrian); border: 2px solid var(--tyrian); padding: 5px 12px; border-radius: 15px; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px;">${product.color || 'N/A'}</span>
                                 </div>
 
-                                <div class="product-price" style="margin-bottom: 1rem;">USD ${formatNumber(product.retail_price)}</div>
+                                <div style="margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 2px solid var(--beige);">
+                                    <div class="product-price" style="font-size: 2rem; margin-bottom: 0.3rem; font-family: 'Cormorant Garamond', serif; color: var(--tyrian); font-weight: 700;">USD ${formatNumber(product.retail_price)}</div>
+                                    <div style="font-size: 0.8rem; color: var(--light-text); font-weight: 500;">RETAIL PRICE</div>
+                                </div>
                                 
-                                <div style="background: var(--pink-soft); padding: 1rem; margin-bottom: 1rem; border: 2px solid var(--hitam);">
-                                    <p style="margin: 0; font-weight: 600;">
-                                        <strong>RENTAL WEEKLY:</strong> USD ${formatNumber(product.price_per_week)}<br>
-                                        <strong>RENTAL MONTHLY:</strong> USD ${formatNumber(product.price_per_month)}
-                                    </p>
+                                <div style="background: var(--cream); padding: 1.2rem; margin-bottom: 1.2rem; border-radius: 12px; border: 1px solid var(--beige);">
+                                    <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--tyrian); margin-bottom: 0.8rem;">RENTAL OPTIONS</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                        <div>
+                                            <div style="font-size: 0.7rem; font-weight: 600; color: var(--light-text); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.3rem;">Weekly</div>
+                                            <div style="font-size: 1.2rem; font-weight: 700; color: var(--tyrian); font-family: 'Cormorant Garamond', serif;">USD ${formatNumber(product.price_per_week)}</div>
+                                        </div>
+                                        <div>
+                                            <div style="font-size: 0.7rem; font-weight: 600; color: var(--light-text); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.3rem;">Monthly</div>
+                                            <div style="font-size: 1.2rem; font-weight: 700; color: var(--citron); font-family: 'Cormorant Garamond', serif;">USD ${formatNumber(product.price_per_month)}</div>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div style="margin-bottom: 1.5rem;">
-                                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 800;">DESCRIPTION</label>
-                                    <p style="line-height: 1.6;">${product.description || 'No description available.'}</p>
+                                <div style="margin-bottom: 1.2rem;">
+                                    <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--tyrian); margin-bottom: 0.6rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--beige);">DESCRIPTION</div>
+                                    <p style="line-height: 1.6; color: var(--dark-text); font-size: 0.85rem;">${product.description || 'No description available.'}</p>
                                 </div>
 
-                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; font-size: 0.85rem;">
-                                    <div><strong>MATERIAL:</strong> ${product.material || 'N/A'}</div>
-                                    <div><strong>GENDER:</strong> ${product.gender || 'N/A'}</div>
-                                    <div><strong>OCCASION:</strong> ${product.occasion || 'N/A'}</div>
-                                    <div><strong>SEASON:</strong> ${product.season || 'N/A'}</div>
+                                <div style="margin-bottom: 1.2rem;">
+                                    <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--tyrian); margin-bottom: 0.6rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--beige);">PRODUCT DETAILS</div>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
+                                        <div>
+                                            <div style="font-size: 0.65rem; font-weight: 600; color: var(--light-text); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.2rem;">Material</div>
+                                            <div style="font-weight: 600; font-size: 0.85rem; color: var(--dark-text);">${product.material || 'N/A'}</div>
+                                        </div>
+                                        <div>
+                                            <div style="font-size: 0.65rem; font-weight: 600; color: var(--light-text); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.2rem;">Gender</div>
+                                            <div style="font-weight: 600; font-size: 0.85rem; color: var(--dark-text);">${product.gender || 'N/A'}</div>
+                                        </div>
+                                        <div>
+                                            <div style="font-size: 0.65rem; font-weight: 600; color: var(--light-text); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.2rem;">Occasion</div>
+                                            <div style="font-weight: 600; font-size: 0.85rem; color: var(--dark-text);">${product.occasion || 'N/A'}</div>
+                                        </div>
+                                        <div>
+                                            <div style="font-size: 0.65rem; font-weight: 600; color: var(--light-text); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.2rem;">Season</div>
+                                            <div style="font-weight: 600; font-size: 0.85rem; color: var(--dark-text);">${product.season || 'N/A'}</div>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="product-stock ${stockStatus.class}" style="text-align: center; padding: 1rem; background: var(--hitam); color: var(--putih); margin-bottom: 1rem;">
-                                    <strong>AVAILABLE STOCK: ${product.available_quantity || 0}</strong>
-                                    ${product.reserved_quantity > 0 ? '<br><small>(' + product.reserved_quantity + ' RESERVED)</small>' : ''}
+                                <div class="product-stock ${stockStatus.class}" style="text-align: center; padding: 1rem; background: ${product.available_quantity > 0 ? 'var(--citron)' : 'var(--tyrian)'}; color: var(--putih); margin-bottom: 1.2rem; border-radius: 12px; font-weight: 700; font-size: 0.95rem; box-shadow: 0 4px 15px ${product.available_quantity > 0 ? 'rgba(15, 92, 62, 0.2)' : 'rgba(155, 28, 44, 0.2)'};">
+                                    AVAILABLE STOCK: ${product.available_quantity || 0}
+                                    ${product.reserved_quantity > 0 ? '<br><small style="opacity: 0.9; font-size: 0.8rem;">(' + product.reserved_quantity + ' RESERVED)</small>' : ''}
                                 </div>
 
                                 ${getAddToCartSection(product, userRole, userData)}
