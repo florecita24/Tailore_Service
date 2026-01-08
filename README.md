@@ -2,7 +2,7 @@
 
 Layanan integrasi yang menghubungkan **Catalog Service (Ooga)** dan **Order Service (Cimol)** untuk sistem e-commerce Tailoré.
 
-[Tailoré Web](https://tailore-service.vercel.app/)
+[Tailoré Web](https://tailore-flori.queenifyofficial.site/)
 
 ## 📋 Deskripsi
 
